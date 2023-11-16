@@ -35,4 +35,5 @@ class Baby {
   static const IconData symptoms = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData left = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData right = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tick = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
