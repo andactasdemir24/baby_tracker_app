@@ -12,18 +12,14 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff4625c3),
-                fixedSize: Size(displayHeight(context) / 2.5, displayWidth(context) / 6),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )),
-            onPressed: onPressed,
-            child: text),
-      ),
-    );
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xff4625c3),
+            fixedSize: Size(displayHeight(context) / 2.5, displayWidth(context) / 6),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            )),
+        onPressed: onPressed,
+        child: text);
   }
 }

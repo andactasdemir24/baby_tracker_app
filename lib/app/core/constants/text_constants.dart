@@ -6,4 +6,6 @@ class TextConstants {
       "Get started with tracking your baby's feedings, diaper changes, sleep patterns, and more...";
   static const String onb2Description =
       "Share access to your baby's tracker with family members, babysitters, or healthcare providers ";
+
+  static const String buttonText = 'Next';
 }
