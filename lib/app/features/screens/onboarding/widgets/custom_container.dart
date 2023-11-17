@@ -1,6 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:baby_tracker_app/app/core/constants/color_constants.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/view/inapp_page.dart';
+import 'package:baby_tracker_app/app/features/screens/onboarding/widgets/custom_current_page_container.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constants/mediaquery_constants.dart';
 import '../../../../core/constants/text_constants.dart';
@@ -21,7 +20,6 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final onbViewmodel = locator.get<OnboardingViewmodel>();
-
     return Observer(
       builder: (context) {
         return Positioned(
@@ -31,55 +29,22 @@ class CustomContainer extends StatelessWidget {
           height: displayHeight(context) * 0.5, // Yüzde 50
           child: Container(
             decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
-              ),
-            ),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))),
             child: Column(
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: displayHeight(context) * 0.03, vertical: displayHeight(context) * 0.03),
-                  child: Text(
-                    text,
-                    style: const TextStyle(
-                      fontSize: 31,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                      horizontal: displayHeight(context) * 0.05, vertical: displayHeight(context) * 0.03),
+                  child: Text(text,
+                      style: const TextStyle(fontSize: 31, fontWeight: FontWeight.w600), textAlign: TextAlign.center),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: displayHeight(context) * 0.01),
-                  child: Text(
-                    text2,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: displayHeight(context) * 0.05),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      onbViewmodel.onbList.length,
-                      (index) => Container(
-                        height: 5,
-                        width: onbViewmodel.currentIndex == index ? 30 : 5,
-                        margin: const EdgeInsets.only(right: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: onbViewmodel.currentIndex == index ? ColorConstants.buttonColor : Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                    padding: EdgeInsets.symmetric(horizontal: displayHeight(context) * 0.01),
+                    child: Text(text2,
+                        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center)),
+                const CurrentIndexContainer(),
                 CustomButton(
                   text: const Text(
                     TextConstants.buttonText,
