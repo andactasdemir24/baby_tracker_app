@@ -1,8 +1,7 @@
 import 'package:baby_tracker_app/app/core/getIt/locator.dart';
 import 'package:baby_tracker_app/app/features/screens/mainview/mainview.dart';
 import 'package:flutter/material.dart';
-import 'app/features/screens/onboarding/view/onboarding_page.dart';
-
+ 
 void main() {
   setupLocator();
   runApp(const MyApp());
