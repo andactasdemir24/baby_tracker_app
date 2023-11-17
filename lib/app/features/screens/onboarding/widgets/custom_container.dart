@@ -45,26 +45,29 @@ class CustomContainer extends StatelessWidget {
                         style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center)),
                 const CurrentIndexContainer(),
-                CustomButton(
-                  text: const Text(
-                    TextConstants.buttonText,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    if (onbViewmodel.currentIndex == onbViewmodel.onbList.length - 1) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const InAppPage(),
-                        ),
+                Observer(builder: (_) {
+                  return CustomButton(
+                    text: const Text(
+                      TextConstants.buttonText,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      if (onbViewmodel.currentIndex == onbViewmodel.onbList.length - 1) {
+                        onbViewmodel.saveIsSeen();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const InAppPage(),
+                          ),
+                        );
+                      }
+                      onbViewmodel.controller.nextPage(
+                        duration: const Duration(milliseconds: 100),
+                        curve: Curves.bounceIn,
                       );
-                    }
-                    onbViewmodel.controller.nextPage(
-                      duration: const Duration(milliseconds: 100),
-                      curve: Curves.bounceIn,
-                    );
-                  },
-                ),
+                    },
+                  );
+                }),
               ],
             ),
           ),

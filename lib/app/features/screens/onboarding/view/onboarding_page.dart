@@ -12,6 +12,7 @@ class OnboardingPage extends StatelessWidget {
     final onbViewmodel = locator.get<OnboardingViewmodel>();
     return Scaffold(body: Observer(builder: (_) {
       return PageView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         controller: onbViewmodel.controller,
         itemCount: onbViewmodel.onbList.length,
         onPageChanged: (value) {
