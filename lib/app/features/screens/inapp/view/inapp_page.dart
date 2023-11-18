@@ -3,6 +3,7 @@ import 'package:baby_tracker_app/app/core/constants/images_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/mediaquery_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/text_constants.dart';
 import 'package:baby_tracker_app/app/core/widgets/custom_button.dart';
+import 'package:baby_tracker_app/app/features/screens/inapp/view/webview.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/widgets/cancel_icon.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/widgets/custom_desc_row.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/widgets/get_premium.dart';
@@ -35,7 +36,8 @@ class InAppPage extends StatelessWidget {
             text: const Text(TextConstants.inappCustomButtonText,
                 style: TextStyle(color: ColorConstants.buttonTextColor)),
             onPressed: () {},
-          )
+          ),
+          WebViews(text: 'https://www.youtube.com/'),
         ],
       ),
     );
