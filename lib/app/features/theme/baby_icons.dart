@@ -11,7 +11,11 @@
 ///      fonts:
 ///       - asset: fonts/Baby.ttf
 ///
-/// 
+///
+/// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL ()
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
 import 'package:flutter/widgets.dart';
 
@@ -36,4 +40,5 @@ class Baby {
   static const IconData left = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData right = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData tick = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendar = IconData(0xf133, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
