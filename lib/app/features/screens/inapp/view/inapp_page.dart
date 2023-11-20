@@ -3,6 +3,7 @@ import 'package:baby_tracker_app/app/core/constants/images_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/mediaquery_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/text_constants.dart';
 import 'package:baby_tracker_app/app/core/widgets/custom_button.dart';
+import 'package:baby_tracker_app/app/features/screens/home/view/home_page.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/view/webview.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/widgets/cancel_icon.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/widgets/custom_desc_row.dart';
@@ -18,7 +19,11 @@ class InAppPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const CancelIcon(),
+          CancelIcon(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+            },
+          ),
           Padding(
               padding: EdgeInsets.only(right: displayWidth(context) * 0.25),
               child: Image.asset(ImageConstants.inApp // Adjust as needed
@@ -34,10 +39,25 @@ class InAppPage extends StatelessWidget {
           AspectRatio(aspectRatio: displayHeight(context) * 0.007),
           CustomButton(
             text: const Text(TextConstants.inappCustomButtonText,
-                style: TextStyle(color: ColorConstants.buttonTextColor)),
+                style: TextStyle(color: ColorConstants.buttonTextColor, fontSize: 20, fontWeight: FontWeight.w600)),
             onPressed: () {},
           ),
-          WebViews(text: 'https://www.youtube.com/'),
+          Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: displayHeight(context) * 0.06, vertical: displayWidth(context) * 0.07),
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  WebViews(text: 'https://www.google.com/', text2: TextConstants.vebViewT1),
+                  const VerticalDivider(color: ColorConstants.annualPriceText, thickness: 2),
+                  WebViews(text: 'https://www.google.com/', text2: TextConstants.vebViewT1),
+                  const VerticalDivider(color: ColorConstants.annualPriceText, thickness: 2),
+                  WebViews(text: 'https://www.google.com/', text2: TextConstants.vebViewT1),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

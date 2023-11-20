@@ -49,7 +49,7 @@ class CustomContainer extends StatelessWidget {
                   return CustomButton(
                     text: const Text(
                       TextConstants.buttonText,
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                     onPressed: () {
                       if (onbViewmodel.currentIndex == onbViewmodel.onbList.length - 1) {

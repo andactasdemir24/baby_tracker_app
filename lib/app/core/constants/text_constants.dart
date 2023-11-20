@@ -17,4 +17,10 @@ class TextConstants {
   static const String priceContainerText = 'Annual';
   static const String priceContainerCost = '\$30';
   static const String inappCustomButtonText = 'Start';
+  static const String vebViewT1 = 'Privacy Policy';
+  static const String vebViewT2 = 'Restore Purchase';
+  static const String vebViewT3 = 'Terms of Use';
+
+  //home
+  static const String appbarText = 'Home';
 }
