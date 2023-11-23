@@ -4,12 +4,18 @@ import 'package:baby_tracker_app/app/core/getIt/locator.dart';
 import 'package:baby_tracker_app/app/features/screens/mainview/mainview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() async {
+import 'app/core/hive/data/hive_box.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid) {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
+  await Hive.initFlutter();
+  hiveRegisterAdapter();
+  await hiveBox();
   setupLocator();
   runApp(const MyApp());
 }
