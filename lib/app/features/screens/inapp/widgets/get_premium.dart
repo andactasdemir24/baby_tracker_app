@@ -9,10 +9,10 @@ class GetPremium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-        child: Text(TextConstants.getPremium,
+        child: Text(getPremium,
             style: TextStyle(
               fontSize: 27,
-              color: ColorConstants.buttonColor,
+              color: buttonColor,
               fontWeight: FontWeight.w600,
             )));
   }

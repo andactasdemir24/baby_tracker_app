@@ -48,7 +48,7 @@ class CustomContainer extends StatelessWidget {
                 Observer(builder: (_) {
                   return CustomButton(
                     text: const Text(
-                      TextConstants.buttonText,
+                      buttonText,
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                     onPressed: () {

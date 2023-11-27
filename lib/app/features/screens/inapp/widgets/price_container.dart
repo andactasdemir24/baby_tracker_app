@@ -15,19 +15,19 @@ class PriceContainer extends StatelessWidget {
         height: displayHeight(context) * 0.08,
         width: double.infinity,
         decoration: ShapeDecoration(
-            color: ColorConstants.annualColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+            color: annualColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: displayWidth(context) * 0.05),
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                TextConstants.priceContainerText,
-                style: TextStyle(color: ColorConstants.annualPriceText, fontSize: 18, fontWeight: FontWeight.w600),
+                priceContainerText,
+                style: TextStyle(color: annualPriceText, fontSize: 18, fontWeight: FontWeight.w600),
               ),
               Text(
-                TextConstants.priceContainerCost,
-                style: TextStyle(color: ColorConstants.annualPriceText, fontSize: 18, fontWeight: FontWeight.w600),
+                priceContainerCost,
+                style: TextStyle(color: annualPriceText, fontSize: 18, fontWeight: FontWeight.w600),
               )
             ],
           ),

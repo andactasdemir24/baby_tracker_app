@@ -10,4 +10,7 @@ class ImageConstants {
   static const String homeImage1 = 'assets/images/Feeding.png';
   static const String homeImage2 = 'assets/images/Sleep.png';
   static const String homeImage3 = 'assets/images/Symptomps.png';
+
+  //Settings
+  static const String settingsPremium = 'assets/images/Premium.png';
 }
