@@ -30,3 +30,7 @@ const String termsofuse = 'Terms of Use';
 const String privacy = 'Privacy Policy';
 const String contact = 'Contact Us';
 const String restore = 'Restore Purchase';
+
+//feeding
+const String feedingAppbar = 'Feeding';
+const String time = 'Time';
