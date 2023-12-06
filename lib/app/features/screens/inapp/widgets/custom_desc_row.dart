@@ -2,6 +2,8 @@ import 'package:baby_tracker_app/app/core/constants/mediaquery_constants.dart';
 import 'package:baby_tracker_app/app/features/theme/baby_icons.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/color_constants.dart';
+
 class CustomDescRow extends StatelessWidget {
   final String text;
   const CustomDescRow({
@@ -16,7 +18,7 @@ class CustomDescRow extends StatelessWidget {
       child: Row(
         children: [
           const Icon(Baby.tick),
-          Text(text, style: const TextStyle(color: Color(0xFF010101), fontSize: 16, fontWeight: FontWeight.w500)),
+          Text(text, style: const TextStyle(color: annualPriceText, fontSize: 16, fontWeight: FontWeight.w500)),
         ],
       ),
     );

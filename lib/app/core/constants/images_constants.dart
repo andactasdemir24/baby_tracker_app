@@ -13,4 +13,9 @@ class ImageConstants {
 
   //Settings
   static const String settingsPremium = 'assets/images/Premium.png';
+  static const String s1 = 'assets/images/s1.png';
+  static const String s2 = 'assets/images/s2.png';
+  static const String s3 = 'assets/images/s3.png';
+  static const String s4 = 'assets/images/s4.png';
+  static const String s5 = 'assets/images/s5.png';
 }

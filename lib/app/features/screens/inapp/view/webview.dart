@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:baby_tracker_app/app/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -25,9 +26,6 @@ class WebViews extends StatelessWidget {
         },
         child: Text(text2,
             style: const TextStyle(
-                color: Color(0xFF1E1F23),
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-                decoration: TextDecoration.underline)));
+                color: vebviewText, fontSize: 10, fontWeight: FontWeight.w400, decoration: TextDecoration.underline)));
   }
 }

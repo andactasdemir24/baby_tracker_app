@@ -35,7 +35,6 @@ abstract class _OnboardingViewmodelBase with Store {
   Future<void> loadIsSeen() async {
     final preferences = await SharedPreferences.getInstance();
     isSeen = preferences.getBool('seen') ?? false;
-    print(isSeen);
   }
 
   @action

@@ -14,7 +14,7 @@ class CancelIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: displayHeight(context) * 0.03),
+      padding: EdgeInsets.only(top: displayHeight(context) * 0.04),
       child: Align(
         alignment: Alignment.centerRight,
         child: IconButton(
