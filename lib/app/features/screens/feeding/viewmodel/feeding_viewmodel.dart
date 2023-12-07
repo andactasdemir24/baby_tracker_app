@@ -36,5 +36,8 @@ abstract class _FeedingViewModelBase with Store {
   @action
   void clearTime() {
     time = null;
+    amountController.clear();
+    noteController.clear();
+    changeVisible();
   }
 }

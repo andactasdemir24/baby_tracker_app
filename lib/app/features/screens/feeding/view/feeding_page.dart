@@ -34,7 +34,10 @@ class FeedingPage extends StatelessWidget {
                   ),
                 ),
                 AmountTextField(controller: feedingViewmodel.amountController),
-                CustomNoteTextfield(controller: feedingViewmodel.noteController),
+                CustomNoteTextfield(
+                  controller: feedingViewmodel.noteController,
+                  onChanged: (p0) => feedingViewmodel.changeVisible(),
+                ),
                 SizedBox(height: displayHeight(context) * 0.2),
                 Observer(
                   builder: (context) {

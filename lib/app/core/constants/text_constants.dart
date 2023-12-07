@@ -37,3 +37,8 @@ const String feedingAppbar = 'Feeding';
 const String time = 'Time';
 const String amount = 'Amount (ml)';
 const String note = 'Note';
+
+//sleep
+const String sleepAppbar = 'Sleep';
+const String feelSleep = 'Feel Sleep';
+const String wokeUp = 'Woke Up';
