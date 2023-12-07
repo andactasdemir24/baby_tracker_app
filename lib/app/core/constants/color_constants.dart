@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+//global
+const Color cwhite = Colors.white;
+const Color cblack = Colors.black;
+
 //Onboarding
 const Color buttonColor = Color(0xff4625c3);
 const Color buttonTextColor = Color(0xfffafafa);

@@ -25,6 +25,54 @@ mixin _$FeedingViewModel on _FeedingViewModelBase, Store {
     });
   }
 
+  late final _$amountControllerAtom =
+      Atom(name: '_FeedingViewModelBase.amountController', context: context);
+
+  @override
+  TextEditingController get amountController {
+    _$amountControllerAtom.reportRead();
+    return super.amountController;
+  }
+
+  @override
+  set amountController(TextEditingController value) {
+    _$amountControllerAtom.reportWrite(value, super.amountController, () {
+      super.amountController = value;
+    });
+  }
+
+  late final _$noteControllerAtom =
+      Atom(name: '_FeedingViewModelBase.noteController', context: context);
+
+  @override
+  TextEditingController get noteController {
+    _$noteControllerAtom.reportRead();
+    return super.noteController;
+  }
+
+  @override
+  set noteController(TextEditingController value) {
+    _$noteControllerAtom.reportWrite(value, super.noteController, () {
+      super.noteController = value;
+    });
+  }
+
+  late final _$isButtonVisibleAtom =
+      Atom(name: '_FeedingViewModelBase.isButtonVisible', context: context);
+
+  @override
+  bool get isButtonVisible {
+    _$isButtonVisibleAtom.reportRead();
+    return super.isButtonVisible;
+  }
+
+  @override
+  set isButtonVisible(bool value) {
+    _$isButtonVisibleAtom.reportWrite(value, super.isButtonVisible, () {
+      super.isButtonVisible = value;
+    });
+  }
+
   late final _$selectTimeAsyncAction =
       AsyncAction('_FeedingViewModelBase.selectTime', context: context);
 
@@ -33,10 +81,38 @@ mixin _$FeedingViewModel on _FeedingViewModelBase, Store {
     return _$selectTimeAsyncAction.run(() => super.selectTime(context));
   }
 
+  late final _$_FeedingViewModelBaseActionController =
+      ActionController(name: '_FeedingViewModelBase', context: context);
+
+  @override
+  void changeVisible() {
+    final _$actionInfo = _$_FeedingViewModelBaseActionController.startAction(
+        name: '_FeedingViewModelBase.changeVisible');
+    try {
+      return super.changeVisible();
+    } finally {
+      _$_FeedingViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearTime() {
+    final _$actionInfo = _$_FeedingViewModelBaseActionController.startAction(
+        name: '_FeedingViewModelBase.clearTime');
+    try {
+      return super.clearTime();
+    } finally {
+      _$_FeedingViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-time: ${time}
+time: ${time},
+amountController: ${amountController},
+noteController: ${noteController},
+isButtonVisible: ${isButtonVisible}
     ''';
   }
 }

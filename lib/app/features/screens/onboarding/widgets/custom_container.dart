@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/mediaquery_constants.dart';
 import '../../../../core/constants/text_constants.dart';
 import '../../../../core/getIt/locator.dart';
-import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/components/costum_vidgets/custom_button.dart';
 import '../viewmodel/onboarding_viewmodel.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

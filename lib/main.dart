@@ -10,7 +10,7 @@ import 'app/core/hive/data/hive_box.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isAndroid) {
+  if (Platform.isAndroid && Platform.isWindows) {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
   await Hive.initFlutter();

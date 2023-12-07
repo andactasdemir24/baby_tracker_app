@@ -11,6 +11,12 @@ abstract class _FeedingViewModelBase with Store {
   @observable
   TextEditingController amountController = TextEditingController();
 
+  @observable
+  TextEditingController noteController = TextEditingController();
+
+  @observable
+  bool isButtonVisible = false;
+
   @action
   Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -20,5 +26,15 @@ abstract class _FeedingViewModelBase with Store {
     if (newTime != null) {
       time = newTime;
     }
+  }
+
+  @action
+  void changeVisible() {
+    isButtonVisible = time != null && amountController.text.isNotEmpty && noteController.text.isNotEmpty;
+  }
+
+  @action
+  void clearTime() {
+    time = null;
   }
 }

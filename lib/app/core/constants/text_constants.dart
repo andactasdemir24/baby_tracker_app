@@ -7,6 +7,7 @@ const String onb2Description =
     "Share access to your baby's tracker with family members, babysitters, or healthcare providers ";
 
 const String buttonText = 'Next';
+const String save = 'Save';
 
 //inapp
 const String getPremium = 'Get Premium!';
@@ -34,3 +35,5 @@ const String restore = 'Restore Purchase';
 //feeding
 const String feedingAppbar = 'Feeding';
 const String time = 'Time';
+const String amount = 'Amount (ml)';
+const String note = 'Note';
