@@ -3,7 +3,6 @@ import 'package:baby_tracker_app/app/features/screens/symptomps/viewmodel/sympto
 import 'package:baby_tracker_app/app/features/theme/baby_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../../../../core/components/costum_vidgets/custom_appbar.dart';
 import '../../../../core/components/costum_vidgets/custom_button.dart';
 import '../../../../core/components/costum_vidgets/note_textfield.dart';
 import '../../../../core/components/costum_vidgets/time_picker.dart';
@@ -33,7 +32,6 @@ class _SymptompsPageState extends State<SymptompsPage> {
                 icon: const Icon(Baby.right))),
         body: SingleChildScrollView(child: Observer(
           builder: (context) {
-            print(symptompsViewmodel.selectedIndices);
             return Column(
               children: [
                 GestureDetector(
