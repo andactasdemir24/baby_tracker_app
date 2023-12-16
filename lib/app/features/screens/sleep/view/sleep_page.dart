@@ -31,11 +31,11 @@ class SleepPage extends StatelessWidget {
                   },
                   child: CustomTimePicker(
                     text: sleepViewmodel.time1 != null ? sleepViewmodel.time1!.format(context) : feelSleep,
-                    color: sleepViewmodel.time1 != null ? cblack : const Color(0xffC2C2C2),
+                    color: sleepViewmodel.time1 != null ? cblack : settingsIndex,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 15),
                   child: GestureDetector(
                     onTap: () {
                       sleepViewmodel.selectTime2(context);
@@ -43,7 +43,7 @@ class SleepPage extends StatelessWidget {
                     },
                     child: CustomTimePicker(
                       text: sleepViewmodel.time2 != null ? sleepViewmodel.time2!.format(context) : wokeUp,
-                      color: sleepViewmodel.time2 != null ? cblack : const Color(0xffC2C2C2),
+                      color: sleepViewmodel.time2 != null ? cblack : settingsIndex,
                     ),
                   ),
                 ),

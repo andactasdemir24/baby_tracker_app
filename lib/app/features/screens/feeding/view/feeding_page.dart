@@ -30,7 +30,7 @@ class FeedingPage extends StatelessWidget {
                   },
                   child: CustomTimePicker(
                     text: feedingViewmodel.time != null ? feedingViewmodel.time!.format(context) : time,
-                    color: feedingViewmodel.time != null ? cblack : const Color(0xffC2C2C2),
+                    color: feedingViewmodel.time != null ? cblack : settingsIndex,
                   ),
                 ),
                 AmountTextField(controller: feedingViewmodel.amountController),

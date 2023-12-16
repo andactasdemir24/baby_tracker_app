@@ -15,7 +15,7 @@ class CustomTimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 15),
       child: Container(
         width: displayWidth(context) * 0.8878,
         height: displayHeight(context) * 0.082,

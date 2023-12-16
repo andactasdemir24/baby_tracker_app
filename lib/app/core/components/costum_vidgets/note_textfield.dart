@@ -1,13 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:baby_tracker_app/app/core/constants/text_constants.dart';
-import 'package:baby_tracker_app/app/features/screens/sleep/viewmodel/sleep_viewmodel.dart';
-
-import '../../../features/screens/feeding/viewmodel/feeding_viewmodel.dart';
 import '../../constants/color_constants.dart';
 import '../../constants/mediaquery_constants.dart';
-import '../../getIt/locator.dart';
 
 class CustomNoteTextfield extends StatelessWidget {
   final TextEditingController controller;
@@ -20,9 +15,6 @@ class CustomNoteTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final feedingViewmodel = locator.get<FeedingViewModel>();
-    final sleepViewmodel = locator.get<SleepViewModel>();
-
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: displayWidth(context) * 0.06),

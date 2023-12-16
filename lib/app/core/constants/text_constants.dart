@@ -42,3 +42,7 @@ const String note = 'Note';
 const String sleepAppbar = 'Sleep';
 const String feelSleep = 'Feel Sleep';
 const String wokeUp = 'Woke Up';
+
+//symptomps
+const String sympAppbar = 'Symptomps Time';
+const String symptomos = 'Symptomps';
