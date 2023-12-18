@@ -2,10 +2,10 @@ import 'package:baby_tracker_app/app/features/screens/sleep/viewmodel/sleep_view
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../core/components/costum_vidgets/custom_appbar.dart';
-import '../../../../core/components/costum_vidgets/custom_button.dart';
-import '../../../../core/components/costum_vidgets/note_textfield.dart';
-import '../../../../core/components/costum_vidgets/time_picker.dart';
+import '../../../../core/components/custom_widgets/custom_appbar.dart';
+import '../../../../core/components/custom_widgets/custom_button.dart';
+import '../../../../core/components/custom_widgets/note_textfield.dart';
+import '../../../../core/components/custom_widgets/time_picker.dart';
 import '../../../../core/constants/color_constants.dart';
 import '../../../../core/constants/mediaquery_constants.dart';
 import '../../../../core/constants/text_constants.dart';
@@ -20,9 +20,10 @@ class SleepPage extends StatelessWidget {
 
     return Scaffold(
         appBar: const CustomAppbar(appbarText: sleepAppbar),
-        body: SingleChildScrollView(child: Observer(
-          builder: (context) {
-            return Column(
+        body: Observer(builder: (context) {
+          return Stack(children: [
+            SingleChildScrollView(
+                child: Column(
               children: [
                 GestureDetector(
                   onTap: () {
@@ -64,8 +65,8 @@ class SleepPage extends StatelessWidget {
                   },
                 )
               ],
-            );
-          },
-        )));
+            )),
+          ]);
+        }));
   }
 }

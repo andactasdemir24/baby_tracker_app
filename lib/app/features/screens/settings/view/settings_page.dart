@@ -1,4 +1,4 @@
-import 'package:baby_tracker_app/app/core/components/costum_vidgets/custom_appbar.dart';
+import 'package:baby_tracker_app/app/core/components/custom_widgets/custom_appbar.dart';
 import 'package:baby_tracker_app/app/core/constants/images_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/mediaquery_constants.dart';
 import 'package:flutter/material.dart';

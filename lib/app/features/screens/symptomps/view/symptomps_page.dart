@@ -3,9 +3,9 @@ import 'package:baby_tracker_app/app/features/screens/symptomps/viewmodel/sympto
 import 'package:baby_tracker_app/app/features/theme/baby_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../../../../core/components/costum_vidgets/custom_button.dart';
-import '../../../../core/components/costum_vidgets/note_textfield.dart';
-import '../../../../core/components/costum_vidgets/time_picker.dart';
+import '../../../../core/components/custom_widgets/custom_button.dart';
+import '../../../../core/components/custom_widgets/note_textfield.dart';
+import '../../../../core/components/custom_widgets/time_picker.dart';
 import '../../../../core/constants/color_constants.dart';
 import '../../../../core/constants/mediaquery_constants.dart';
 import '../../../../core/constants/text_constants.dart';
@@ -25,6 +25,10 @@ class _SymptompsPageState extends State<SymptompsPage> {
     final symptompsViewmodel = locator.get<SymptompsViewmodel>();
     return Scaffold(
         appBar: AppBar(
+            centerTitle: true,
+            title: const Text(symptomos,
+                style: TextStyle(
+                    color: getPremiumTextColor, fontSize: 27, fontFamily: 'Poppins', fontWeight: FontWeight.w600)),
             leading: IconButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));

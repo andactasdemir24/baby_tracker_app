@@ -1,10 +1,10 @@
-import 'package:baby_tracker_app/app/core/components/costum_vidgets/custom_button.dart';
+import 'package:baby_tracker_app/app/core/components/custom_widgets/custom_button.dart';
 import 'package:baby_tracker_app/app/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/getIt/locator.dart';
 import '../viewmodel/symptomps_viewmodel.dart';
-import '../../../../core/components/costum_vidgets/custom_appbar.dart';
+import '../../../../core/components/custom_widgets/custom_appbar.dart';
 import '../../../../core/constants/mediaquery_constants.dart';
 import '../../../../core/constants/text_constants.dart';
 import '../widgets/custom_symptomps_list.dart';

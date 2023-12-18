@@ -73,6 +73,22 @@ mixin _$FeedingViewModel on _FeedingViewModelBase, Store {
     });
   }
 
+  late final _$isBlurredAtom =
+      Atom(name: '_FeedingViewModelBase.isBlurred', context: context);
+
+  @override
+  bool get isBlurred {
+    _$isBlurredAtom.reportRead();
+    return super.isBlurred;
+  }
+
+  @override
+  set isBlurred(bool value) {
+    _$isBlurredAtom.reportWrite(value, super.isBlurred, () {
+      super.isBlurred = value;
+    });
+  }
+
   late final _$selectTimeAsyncAction =
       AsyncAction('_FeedingViewModelBase.selectTime', context: context);
 
@@ -83,6 +99,17 @@ mixin _$FeedingViewModel on _FeedingViewModelBase, Store {
 
   late final _$_FeedingViewModelBaseActionController =
       ActionController(name: '_FeedingViewModelBase', context: context);
+
+  @override
+  void toggleBlur(BuildContext context) {
+    final _$actionInfo = _$_FeedingViewModelBaseActionController.startAction(
+        name: '_FeedingViewModelBase.toggleBlur');
+    try {
+      return super.toggleBlur(context);
+    } finally {
+      _$_FeedingViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void changeVisible() {
@@ -112,7 +139,8 @@ mixin _$FeedingViewModel on _FeedingViewModelBase, Store {
 time: ${time},
 amountController: ${amountController},
 noteController: ${noteController},
-isButtonVisible: ${isButtonVisible}
+isButtonVisible: ${isButtonVisible},
+isBlurred: ${isBlurred}
     ''';
   }
 }

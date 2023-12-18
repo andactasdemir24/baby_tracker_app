@@ -2,7 +2,7 @@ import 'package:baby_tracker_app/app/core/constants/color_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/images_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/mediaquery_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/text_constants.dart';
-import 'package:baby_tracker_app/app/core/components/costum_vidgets/custom_button.dart';
+import 'package:baby_tracker_app/app/core/components/custom_widgets/custom_button.dart';
 import 'package:baby_tracker_app/app/features/screens/home/view/home_page.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/view/webview.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/widgets/cancel_icon.dart';
