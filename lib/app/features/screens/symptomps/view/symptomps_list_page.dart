@@ -13,14 +13,9 @@ import '../../../../core/constants/mediaquery_constants.dart';
 import '../../../../core/constants/text_constants.dart';
 import '../widgets/custom_symptomps_list.dart';
 
-class SymptompsList extends StatefulWidget {
+class SymptompsList extends StatelessWidget {
   const SymptompsList({Key? key}) : super(key: key);
 
-  @override
-  State<SymptompsList> createState() => _SymptompsListState();
-}
-
-class _SymptompsListState extends State<SymptompsList> {
   @override
   Widget build(BuildContext context) {
     final symptompsViewmodel = locator.get<SymptompsViewmodel>();

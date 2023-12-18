@@ -4,6 +4,8 @@ import 'package:baby_tracker_app/app/features/screens/sleep/viewmodel/sleep_view
 import 'package:baby_tracker_app/app/features/screens/symptomps/viewmodel/symptomps_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../features/screens/calender/viewmodel/calender_viewmodel.dart';
+
 var locator = GetIt.instance;
 
 void setupLocator() {
@@ -11,4 +13,5 @@ void setupLocator() {
   locator.registerLazySingleton(() => FeedingViewModel());
   locator.registerLazySingleton(() => SleepViewModel());
   locator.registerLazySingleton(() => SymptompsViewmodel());
+  locator.registerLazySingleton(() => CalenderViewModel());
 }

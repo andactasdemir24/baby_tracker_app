@@ -46,3 +46,6 @@ const String wokeUp = 'Woke Up';
 //symptomps
 const String sympAppbar = 'Symptomps Time';
 const String symptomos = 'Symptomps';
+
+//Calender
+const String calenderAppbar = 'Calender';
