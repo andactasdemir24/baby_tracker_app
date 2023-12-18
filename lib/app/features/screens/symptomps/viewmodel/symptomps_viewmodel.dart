@@ -1,6 +1,8 @@
 import 'package:baby_tracker_app/app/features/model/symptomps_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../view/symptomps_page.dart';
 part 'symptomps_viewmodel.g.dart';
 
 class SymptompsViewmodel = _SymptompsViewmodelBase with _$SymptompsViewmodel;
@@ -29,6 +31,22 @@ abstract class _SymptompsViewmodelBase with Store {
     SymptopmsModel(image: 'assets/images/Cough.png', name: 'Cough'),
     SymptopmsModel(image: 'assets/images/Fever.png', name: 'Fever'),
   ];
+
+  @observable
+  bool isBlurred3 = false;
+
+  @action
+  void toggleBlur3(BuildContext context) {
+    if (!isBlurred3) {
+      isBlurred3 = true;
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => const SymptompsPage(),
+        ));
+        isBlurred3 = false;
+      });
+    }
+  }
 
   @action
   Future<void> selectTime3(BuildContext context) async {

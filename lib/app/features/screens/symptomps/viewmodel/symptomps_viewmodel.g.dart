@@ -89,6 +89,22 @@ mixin _$SymptompsViewmodel on _SymptompsViewmodelBase, Store {
     });
   }
 
+  late final _$isBlurred3Atom =
+      Atom(name: '_SymptompsViewmodelBase.isBlurred3', context: context);
+
+  @override
+  bool get isBlurred3 {
+    _$isBlurred3Atom.reportRead();
+    return super.isBlurred3;
+  }
+
+  @override
+  set isBlurred3(bool value) {
+    _$isBlurred3Atom.reportWrite(value, super.isBlurred3, () {
+      super.isBlurred3 = value;
+    });
+  }
+
   late final _$selectTime3AsyncAction =
       AsyncAction('_SymptompsViewmodelBase.selectTime3', context: context);
 
@@ -123,6 +139,20 @@ mixin _$SymptompsViewmodel on _SymptompsViewmodelBase, Store {
         .run(() => super.toggleSelectedIndex(symptopmsModel));
   }
 
+  late final _$_SymptompsViewmodelBaseActionController =
+      ActionController(name: '_SymptompsViewmodelBase', context: context);
+
+  @override
+  void toggleBlur3(BuildContext context) {
+    final _$actionInfo = _$_SymptompsViewmodelBaseActionController.startAction(
+        name: '_SymptompsViewmodelBase.toggleBlur3');
+    try {
+      return super.toggleBlur3(context);
+    } finally {
+      _$_SymptompsViewmodelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
@@ -130,7 +160,8 @@ time3: ${time3},
 noteController: ${noteController},
 isButtonVisible3: ${isButtonVisible3},
 selectedIndices: ${selectedIndices},
-symptompsList: ${symptompsList}
+symptompsList: ${symptompsList},
+isBlurred3: ${isBlurred3}
     ''';
   }
 }
