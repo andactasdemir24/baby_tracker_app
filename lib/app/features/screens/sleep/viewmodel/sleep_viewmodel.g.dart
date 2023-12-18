@@ -73,6 +73,22 @@ mixin _$SleepViewModel on _SleepViewModelBase, Store {
     });
   }
 
+  late final _$isBlurred2Atom =
+      Atom(name: '_SleepViewModelBase.isBlurred2', context: context);
+
+  @override
+  bool get isBlurred2 {
+    _$isBlurred2Atom.reportRead();
+    return super.isBlurred2;
+  }
+
+  @override
+  set isBlurred2(bool value) {
+    _$isBlurred2Atom.reportWrite(value, super.isBlurred2, () {
+      super.isBlurred2 = value;
+    });
+  }
+
   late final _$selectTime1AsyncAction =
       AsyncAction('_SleepViewModelBase.selectTime1', context: context);
 
@@ -91,6 +107,17 @@ mixin _$SleepViewModel on _SleepViewModelBase, Store {
 
   late final _$_SleepViewModelBaseActionController =
       ActionController(name: '_SleepViewModelBase', context: context);
+
+  @override
+  void toggleBlur2(BuildContext context) {
+    final _$actionInfo = _$_SleepViewModelBaseActionController.startAction(
+        name: '_SleepViewModelBase.toggleBlur2');
+    try {
+      return super.toggleBlur2(context);
+    } finally {
+      _$_SleepViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void changeVisible() {
@@ -120,7 +147,8 @@ mixin _$SleepViewModel on _SleepViewModelBase, Store {
 time1: ${time1},
 time2: ${time2},
 noteController: ${noteController},
-isButtonVisible2: ${isButtonVisible2}
+isButtonVisible2: ${isButtonVisible2},
+isBlurred2: ${isBlurred2}
     ''';
   }
 }

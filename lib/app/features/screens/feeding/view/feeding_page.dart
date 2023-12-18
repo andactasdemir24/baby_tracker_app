@@ -1,6 +1,7 @@
 // feeding_page.dart
 
 import 'dart:ui';
+import 'package:baby_tracker_app/app/core/constants/images_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:baby_tracker_app/app/core/components/custom_widgets/custom_button.dart';
@@ -63,11 +64,7 @@ class FeedingPage extends StatelessWidget {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                   child: Container(
-                    color: Colors.black.withOpacity(0),
-                    child: Center(
-                      child: Lottie.asset('assets/lottie/saved.json'), // Lottie animasyonunu ekleyin
-                    ),
-                  ),
+                      color: Colors.black.withOpacity(0), child: Center(child: Lottie.asset(ImageConstants.lottie))),
                 ),
               ),
           ],

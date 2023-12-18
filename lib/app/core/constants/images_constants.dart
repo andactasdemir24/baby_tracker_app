@@ -18,4 +18,7 @@ class ImageConstants {
   static const String s3 = 'assets/images/s3.png';
   static const String s4 = 'assets/images/s4.png';
   static const String s5 = 'assets/images/s5.png';
+
+  //Lottie
+  static const String lottie = 'assets/lottie/saved.json';
 }
