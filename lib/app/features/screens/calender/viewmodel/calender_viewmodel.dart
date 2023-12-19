@@ -8,6 +8,7 @@ abstract class _CalenderViewModelBase with Store {
   @observable
   DateTime dateTime = DateTime.now();
 
+
   @action
   Future<DateTime?> pickDate(BuildContext context) =>
       showDatePicker(context: context, initialDate: dateTime, firstDate: DateTime(1900), lastDate: DateTime(2100));

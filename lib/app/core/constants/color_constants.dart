@@ -16,3 +16,10 @@ const Color vebviewText = Color(0xFF1E1F23);
 
 //settings
 const Color settingsIndex = Color(0xffc2c2c2);
+
+//feeding icon color
+const Color feedindIconColor = Color(0xff9B64FF);
+//sleep icon color
+const Color sleepIconColor = Colors.red;
+//symptomps icon color
+const Color symptompsIconColor = Color(0xffFFC664);
