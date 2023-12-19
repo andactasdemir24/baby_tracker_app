@@ -17,21 +17,24 @@ class SleepAdapter extends TypeAdapter<Sleep> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Sleep(
-      fellSleep: fields[0] as DateTime,
-      wokeUp: fields[1] as DateTime,
-      text: fields[2] as String,
+      id: fields[0] as String?,
+      fellSleep: fields[1] as DateTime?,
+      wokeUp: fields[2] as DateTime?,
+      text: fields[3] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Sleep obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.fellSleep)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.wokeUp)
+      ..write(obj.fellSleep)
       ..writeByte(2)
+      ..write(obj.wokeUp)
+      ..writeByte(3)
       ..write(obj.text);
   }
 

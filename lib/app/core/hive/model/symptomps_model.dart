@@ -7,13 +7,16 @@ part 'symptomps_model.g.dart';
 @HiveType(typeId: 2)
 class Symptomps {
   @HiveField(0)
-  DateTime symTime;
+  String? id;
 
   @HiveField(1)
-  List<SymptopmsModel> sympList;
+  DateTime? symTime;
 
   @HiveField(2)
-  String text;
+  List<SymptopmsModel> sympList;
 
-  Symptomps({required this.symTime, required this.sympList, required this.text});
+  @HiveField(3)
+  String? text;
+
+  Symptomps({required this.id, required this.symTime, required this.sympList, required this.text});
 }

@@ -17,21 +17,24 @@ class FeedingAdapter extends TypeAdapter<Feeding> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Feeding(
-      time: fields[0] as DateTime,
-      amount: fields[1] as int,
-      text: fields[2] as String,
+      id: fields[0] as String?,
+      time: fields[1] as DateTime?,
+      amount: fields[2] as int?,
+      text: fields[3] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Feeding obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.time)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.amount)
+      ..write(obj.time)
       ..writeByte(2)
+      ..write(obj.amount)
+      ..writeByte(3)
       ..write(obj.text);
   }
 

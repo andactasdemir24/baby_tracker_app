@@ -17,21 +17,24 @@ class SymptompsAdapter extends TypeAdapter<Symptomps> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Symptomps(
-      symTime: fields[0] as DateTime,
-      sympList: (fields[1] as List).cast<SymptopmsModel>(),
-      text: fields[2] as String,
+      id: fields[0] as String?,
+      symTime: fields[1] as DateTime?,
+      sympList: (fields[2] as List).cast<SymptopmsModel>(),
+      text: fields[3] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Symptomps obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.symTime)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.sympList)
+      ..write(obj.symTime)
       ..writeByte(2)
+      ..write(obj.sympList)
+      ..writeByte(3)
       ..write(obj.text);
   }
 

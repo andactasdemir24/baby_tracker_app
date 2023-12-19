@@ -5,13 +5,16 @@ part 'sleep_model.g.dart';
 @HiveType(typeId: 1)
 class Sleep {
   @HiveField(0)
-  DateTime fellSleep;
+  String? id;
 
   @HiveField(1)
-  DateTime wokeUp;
+  DateTime? fellSleep;
 
   @HiveField(2)
-  String text;
+  DateTime? wokeUp;
 
-  Sleep({required this.fellSleep, required this.wokeUp, required this.text});
+  @HiveField(3)
+  String? text;
+
+  Sleep({required this.id, required this.fellSleep, required this.wokeUp, required this.text});
 }

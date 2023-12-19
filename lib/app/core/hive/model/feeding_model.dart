@@ -5,13 +5,16 @@ part 'feeding_model.g.dart';
 @HiveType(typeId: 0)
 class Feeding {
   @HiveField(0)
-  DateTime time;
+  String? id;
 
   @HiveField(1)
-  int amount;
+  DateTime? time;
 
   @HiveField(2)
-  String text;
+  int? amount;
 
-  Feeding({required this.time, required this.amount, required this.text});
+  @HiveField(3)
+  String? text;
+
+  Feeding({required this.id, required this.time, required this.amount, required this.text});
 }
