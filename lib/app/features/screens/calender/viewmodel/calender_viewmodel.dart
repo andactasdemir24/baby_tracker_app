@@ -11,7 +11,7 @@ part 'calender_viewmodel.g.dart';
 class CalenderViewModel = _CalenderViewModelBase with _$CalenderViewModel;
 
 abstract class _CalenderViewModelBase with Store {
-  final feedingviewmodel = locator.get<FeedingDatasource>();
+  final feedingDatasource = locator.get<FeedingDatasource>();
 
   @observable
   DateTime dateTime = DateTime.now();
@@ -31,11 +31,36 @@ abstract class _CalenderViewModelBase with Store {
     await getFeeding();
   }
 
+  //ALL FEEDİNG FUNCTİON
+  //bastığım indexe göre algılama
+  @action
+  void toggleSelected(int index) {
+    var feeding = feedingList[index];
+    var updatedFeeding = feeding.copyWith(isSelected: !feeding.isSelected);
+    feedingList = List.from(feedingList)..[index] = updatedFeeding;
+  }
+
+  @action
+  void addFeedingToList(Feeding newFeeding) {
+    feedingList = List.from(feedingList)..add(newFeeding);
+  }
+
   @action
   Future<void> getFeeding() async {
-    feedingList.clear();
-    var feedingData = await feedingviewmodel.getAll();
+    var feedingData = await feedingDatasource.getAll();
     feedingList.addAll(feedingData.data!);
+  }
+
+  @action
+  Future<void> deleteFeeding(String id) async {
+    await feedingDatasource.delete(id);
+    feedingList.removeWhere((feeding) => feeding.id.toString() == id);
+  }
+
+  @action
+  Future<void> refreshFeedingList() async {
+    var feedingData = await feedingDatasource.getAll();
+    feedingList = feedingData.data ?? [];
   }
 
   @action

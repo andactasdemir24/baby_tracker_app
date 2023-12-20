@@ -105,6 +105,14 @@ mixin _$FeedingViewModel on _FeedingViewModelBase, Store {
     return _$addFeedingAsyncAction.run(() => super.addFeeding());
   }
 
+  late final _$updateFeedingAsyncAction =
+      AsyncAction('_FeedingViewModelBase.updateFeeding', context: context);
+
+  @override
+  Future<void> updateFeeding(Feeding feed) {
+    return _$updateFeedingAsyncAction.run(() => super.updateFeeding(feed));
+  }
+
   late final _$_FeedingViewModelBaseActionController =
       ActionController(name: '_FeedingViewModelBase', context: context);
 

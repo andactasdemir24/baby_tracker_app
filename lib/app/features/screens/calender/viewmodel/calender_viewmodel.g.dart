@@ -73,8 +73,48 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     return _$getFeedingAsyncAction.run(() => super.getFeeding());
   }
 
+  late final _$deleteFeedingAsyncAction =
+      AsyncAction('_CalenderViewModelBase.deleteFeeding', context: context);
+
+  @override
+  Future<void> deleteFeeding(String id) {
+    return _$deleteFeedingAsyncAction.run(() => super.deleteFeeding(id));
+  }
+
+  late final _$refreshFeedingListAsyncAction = AsyncAction(
+      '_CalenderViewModelBase.refreshFeedingList',
+      context: context);
+
+  @override
+  Future<void> refreshFeedingList() {
+    return _$refreshFeedingListAsyncAction
+        .run(() => super.refreshFeedingList());
+  }
+
   late final _$_CalenderViewModelBaseActionController =
       ActionController(name: '_CalenderViewModelBase', context: context);
+
+  @override
+  void toggleSelected(int index) {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.toggleSelected');
+    try {
+      return super.toggleSelected(index);
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addFeedingToList(Feeding newFeeding) {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.addFeedingToList');
+    try {
+      return super.addFeedingToList(newFeeding);
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   Future<DateTime?> pickDate(BuildContext context) {

@@ -24,6 +24,7 @@ class AmountTextField extends StatelessWidget {
         padding:
             EdgeInsets.symmetric(horizontal: displayWidth(context) * 0.06, vertical: displayHeight(context) * 0.02),
         child: TextField(
+          keyboardType: TextInputType.number,
           onChanged: (value) {
             feedingViewmodel.changeVisible();
           },

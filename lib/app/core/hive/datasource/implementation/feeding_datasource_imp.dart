@@ -9,7 +9,7 @@ class FeedingDatasourceImp extends FeedingDatasource {
   @override
   Future<Result> add(Feeding feedingModel) async {
     try {
-      await feedingBox.add(feedingModel);
+      await feedingBox.put(feedingModel.id, feedingModel);
       return Result.success();
     } catch (e) {
       return Result.fail(e.toString());

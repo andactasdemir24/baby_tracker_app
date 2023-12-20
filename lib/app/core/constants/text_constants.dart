@@ -8,6 +8,7 @@ const String onb2Description =
 
 const String buttonText = 'Next';
 const String save = 'Save';
+const String update = 'Update';
 
 //inapp
 const String getPremium = 'Get Premium!';

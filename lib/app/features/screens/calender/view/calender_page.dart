@@ -62,6 +62,7 @@ class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMix
             ),
             Expanded(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _tabController,
                 children: <Widget>[
                   const Center(

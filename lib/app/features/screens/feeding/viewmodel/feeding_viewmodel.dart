@@ -5,12 +5,16 @@ import 'package:mobx/mobx.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../core/getIt/locator.dart';
+import '../../calender/viewmodel/calender_viewmodel.dart';
 import '../../home/view/home_page.dart';
 part 'feeding_viewmodel.g.dart';
 
 class FeedingViewModel = _FeedingViewModelBase with _$FeedingViewModel;
 
 abstract class _FeedingViewModelBase with Store {
+  final feedingDatasource = locator.get<FeedingDatasource>();
+  final calenderViewModel = locator.get<CalenderViewModel>();
+
   @observable
   TimeOfDay? time;
 
@@ -25,8 +29,6 @@ abstract class _FeedingViewModelBase with Store {
 
   @observable
   bool isBlurred = false;
-
-  final feedingviewmodel = locator.get<FeedingDatasource>();
 
   @action
   void toggleBlur(BuildContext context) {
@@ -83,7 +85,14 @@ abstract class _FeedingViewModelBase with Store {
         amount: int.parse(amountController.text),
         text: noteController.text,
       );
-      await feedingviewmodel.add(feedingModel);
+      await feedingDatasource.add(feedingModel);
+      calenderViewModel.addFeedingToList(feedingModel);
     }
+  }
+
+  @action
+  Future<void> updateFeeding(Feeding feed) async {
+    await feedingDatasource.update(feed);
+    await calenderViewModel.refreshFeedingList();
   }
 }

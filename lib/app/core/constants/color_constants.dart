@@ -23,3 +23,5 @@ const Color feedindIconColor = Color(0xff9B64FF);
 const Color sleepIconColor = Colors.red;
 //symptomps icon color
 const Color symptompsIconColor = Color(0xffFFC664);
+// calender icon color
+const Color mainIconColor = Color(0xff4625C3);
