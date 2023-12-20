@@ -7,6 +7,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/getIt/locator.dart';
 import '../../../theme/baby_icons.dart';
 import '../widgets/custom_datebutton.dart';
+import '../widgets/custom_feeding_listview.dart';
 
 class CalenderPage extends StatefulWidget {
   const CalenderPage({super.key});
@@ -17,6 +18,7 @@ class CalenderPage extends StatefulWidget {
 
 class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMixin {
   late final TabController _tabController;
+  final calenderViewmodel = locator.get<CalenderViewModel>();
 
   @override
   void initState() {
@@ -32,7 +34,6 @@ class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    final calenderViewmodel = locator.get<CalenderViewModel>();
     return Scaffold(
       appBar: const CustomAppbar(appbarText: calenderAppbar),
       body: Observer(builder: (context) {
@@ -62,17 +63,17 @@ class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMix
             Expanded(
               child: TabBarView(
                 controller: _tabController,
-                children: const <Widget>[
-                  Center(
+                children: <Widget>[
+                  const Center(
                     child: Text("It's cloudy here"),
                   ),
-                  Center(
-                    child: Text("It's cloudy here"),
-                  ),
-                  Center(
+                  Observer(builder: (_) {
+                    return const CustomListView();
+                  }),
+                  const Center(
                     child: Text("It's rainy here"),
                   ),
-                  Center(
+                  const Center(
                     child: Text("It's sunny here"),
                   ),
                 ],

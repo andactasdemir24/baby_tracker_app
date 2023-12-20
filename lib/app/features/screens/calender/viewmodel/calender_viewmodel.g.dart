@@ -25,6 +25,54 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     });
   }
 
+  late final _$feedingListAtom =
+      Atom(name: '_CalenderViewModelBase.feedingList', context: context);
+
+  @override
+  List<Feeding> get feedingList {
+    _$feedingListAtom.reportRead();
+    return super.feedingList;
+  }
+
+  @override
+  set feedingList(List<Feeding> value) {
+    _$feedingListAtom.reportWrite(value, super.feedingList, () {
+      super.feedingList = value;
+    });
+  }
+
+  late final _$isSelectedAtom =
+      Atom(name: '_CalenderViewModelBase.isSelected', context: context);
+
+  @override
+  bool get isSelected {
+    _$isSelectedAtom.reportRead();
+    return super.isSelected;
+  }
+
+  @override
+  set isSelected(bool value) {
+    _$isSelectedAtom.reportWrite(value, super.isSelected, () {
+      super.isSelected = value;
+    });
+  }
+
+  late final _$initAsyncAction =
+      AsyncAction('_CalenderViewModelBase.init', context: context);
+
+  @override
+  Future<void> init() {
+    return _$initAsyncAction.run(() => super.init());
+  }
+
+  late final _$getFeedingAsyncAction =
+      AsyncAction('_CalenderViewModelBase.getFeeding', context: context);
+
+  @override
+  Future<void> getFeeding() {
+    return _$getFeedingAsyncAction.run(() => super.getFeeding());
+  }
+
   late final _$_CalenderViewModelBaseActionController =
       ActionController(name: '_CalenderViewModelBase', context: context);
 
@@ -42,7 +90,9 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
   @override
   String toString() {
     return '''
-dateTime: ${dateTime}
+dateTime: ${dateTime},
+feedingList: ${feedingList},
+isSelected: ${isSelected}
     ''';
   }
 }

@@ -1,6 +1,10 @@
+import 'package:baby_tracker_app/app/core/hive/datasource/feeding_datasource.dart';
+import 'package:baby_tracker_app/app/core/hive/model/feeding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:uuid/uuid.dart';
 
+import '../../../../core/getIt/locator.dart';
 import '../../home/view/home_page.dart';
 part 'feeding_viewmodel.g.dart';
 
@@ -21,6 +25,8 @@ abstract class _FeedingViewModelBase with Store {
 
   @observable
   bool isBlurred = false;
+
+  final feedingviewmodel = locator.get<FeedingDatasource>();
 
   @action
   void toggleBlur(BuildContext context) {
@@ -57,5 +63,27 @@ abstract class _FeedingViewModelBase with Store {
     amountController.clear();
     noteController.clear();
     changeVisible();
+  }
+
+  @action
+  Future<void> addFeeding() async {
+    var uuid = const Uuid();
+    if (time != null) {
+      final now = DateTime.now();
+      final feedingTime = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        time!.hour,
+        time!.minute,
+      );
+      Feeding feedingModel = Feeding(
+        id: uuid.v4(),
+        time: feedingTime,
+        amount: int.parse(amountController.text),
+        text: noteController.text,
+      );
+      await feedingviewmodel.add(feedingModel);
+    }
   }
 }

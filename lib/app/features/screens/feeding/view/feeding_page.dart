@@ -51,9 +51,11 @@ class FeedingPage extends StatelessWidget {
                     return Visibility(
                       visible: feedingViewModel.isButtonVisible,
                       child: CustomButton(
-                        text: const Text(save, style: TextStyle(color: cwhite)),
-                        onPressed: () => feedingViewModel.toggleBlur(context),
-                      ),
+                          text: const Text(save, style: TextStyle(color: cwhite)),
+                          onPressed: () {
+                            feedingViewModel.addFeeding();
+                            feedingViewModel.toggleBlur(context);
+                          }),
                     );
                   },
                 )

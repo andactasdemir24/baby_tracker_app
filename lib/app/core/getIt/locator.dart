@@ -1,3 +1,5 @@
+import 'package:baby_tracker_app/app/core/hive/datasource/feeding_datasource.dart';
+import 'package:baby_tracker_app/app/core/hive/datasource/implementation/feeding_datasource_imp.dart';
 import 'package:baby_tracker_app/app/features/screens/feeding/viewmodel/feeding_viewmodel.dart';
 import 'package:baby_tracker_app/app/features/screens/onboarding/viewmodel/onboarding_viewmodel.dart';
 import 'package:baby_tracker_app/app/features/screens/sleep/viewmodel/sleep_viewmodel.dart';
@@ -14,4 +16,7 @@ void setupLocator() {
   locator.registerLazySingleton(() => SleepViewModel());
   locator.registerLazySingleton(() => SymptompsViewmodel());
   locator.registerLazySingleton(() => CalenderViewModel());
+
+  //data source
+  locator.registerLazySingleton<FeedingDatasource>(() => FeedingDatasourceImp());
 }
