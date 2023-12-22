@@ -92,7 +92,35 @@ abstract class _FeedingViewModelBase with Store {
 
   @action
   Future<void> updateFeeding(Feeding feed) async {
-    await feedingDatasource.update(feed);
+    DateTime? updatedTime = feed.time;
+    int? updatedAmount = feed.amount;
+    String? updatedText = feed.text;
+
+    if (time != null) {
+      updatedTime = DateTime(
+        feed.time!.year,
+        feed.time!.month,
+        feed.time!.day,
+        time!.hour,
+        time!.minute,
+      );
+    }
+
+    if (amountController.text.isNotEmpty) {
+      updatedAmount = int.parse(amountController.text);
+    }
+    if (noteController.text.isNotEmpty) {
+      updatedText = noteController.text;
+    }
+
+    Feeding updatedFeeding = Feeding(
+      id: feed.id,
+      time: updatedTime,
+      amount: updatedAmount,
+      text: updatedText,
+    );
+
+    await feedingDatasource.update(updatedFeeding);
     await calenderViewModel.refreshFeedingList();
   }
 }

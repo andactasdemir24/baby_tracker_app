@@ -11,6 +11,7 @@ import 'package:lottie/lottie.dart';
 import '../../../../core/components/custom_widgets/amount_textfield.dart';
 import '../../../../core/components/custom_widgets/custom_appbar.dart';
 import '../../../../core/components/custom_widgets/note_textfield.dart';
+import '../../../../core/components/custom_widgets/time_picker.dart';
 import '../../../../core/constants/color_constants.dart';
 import '../../../../core/constants/images_constants.dart';
 import '../../../../core/constants/mediaquery_constants.dart';
@@ -65,12 +66,21 @@ class _FeedingEditState extends State<FeedingEdit> {
               child: Center(
                 child: Column(
                   children: [
+                    GestureDetector(
+                      onTap: () {
+                        viewmodel.selectTime(context);
+                      },
+                      child: CustomTimePicker(
+                        text: viewmodel.time != null ? viewmodel.time!.format(context) : time,
+                        color: viewmodel.time != null ? cblack : settingsIndex,
+                      ),
+                    ),
                     AmountTextField(controller: _amountController),
                     CustomNoteTextfield(
                       controller: _noteController,
                       onChanged: (p0) => viewmodel.changeVisible(),
                     ),
-                    SizedBox(height: displayHeight(context) * 0.3),
+                    SizedBox(height: displayHeight(context) * 0.2),
                     Observer(builder: (context) {
                       return CustomButton(
                         text: const Text(update, style: TextStyle(color: cwhite)),
