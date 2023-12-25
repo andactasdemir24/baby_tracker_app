@@ -19,7 +19,7 @@ class SymptompsAdapter extends TypeAdapter<Symptomps> {
     return Symptomps(
       id: fields[0] as String?,
       symTime: fields[1] as DateTime?,
-      sympList: (fields[2] as List).cast<SymptopmsModel>(),
+      sympList: (fields[2] as List?)?.cast<SymptopmsModel>(),
       text: fields[3] as String?,
     );
   }
