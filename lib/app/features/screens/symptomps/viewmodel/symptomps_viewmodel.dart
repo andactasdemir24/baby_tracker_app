@@ -1,15 +1,21 @@
+import 'package:baby_tracker_app/app/core/hive/datasource/symptomps_datasource.dart';
 import 'package:baby_tracker_app/app/features/model/symptomps_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../core/constants/images_constants.dart';
 import '../../../../core/constants/text_constants.dart';
+import '../../../../core/getIt/locator.dart';
+import '../../calender/viewmodel/calender_viewmodel.dart';
 import '../view/symptomps_page.dart';
 part 'symptomps_viewmodel.g.dart';
 
 class SymptompsViewmodel = _SymptompsViewmodelBase with _$SymptompsViewmodel;
 
 abstract class _SymptompsViewmodelBase with Store {
+  var sleepDatasource = locator.get<SymptompsDatasource>();
+  var calenderViewModel = locator.get<CalenderViewModel>();
+
   @observable
   TimeOfDay? time3;
 

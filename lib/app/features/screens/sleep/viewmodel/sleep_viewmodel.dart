@@ -12,8 +12,8 @@ part 'sleep_viewmodel.g.dart';
 class SleepViewModel = _SleepViewModelBase with _$SleepViewModel;
 
 abstract class _SleepViewModelBase with Store {
-  final sleepDatasource = locator.get<SleepDatasource>();
-  final calenderViewModel = locator.get<CalenderViewModel>();
+  var sleepDatasource = locator.get<SleepDatasource>();
+  var calenderViewModel = locator.get<CalenderViewModel>();
 
   @observable
   TimeOfDay? time1;

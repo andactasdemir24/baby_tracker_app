@@ -12,8 +12,8 @@ part 'feeding_viewmodel.g.dart';
 class FeedingViewModel = _FeedingViewModelBase with _$FeedingViewModel;
 
 abstract class _FeedingViewModelBase with Store {
-  final feedingDatasource = locator.get<FeedingDatasource>();
-  final calenderViewModel = locator.get<CalenderViewModel>();
+  var feedingDatasource = locator.get<FeedingDatasource>();
+  var calenderViewModel = locator.get<CalenderViewModel>();
 
   @observable
   TimeOfDay? time;
