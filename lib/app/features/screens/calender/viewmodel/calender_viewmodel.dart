@@ -1,11 +1,12 @@
 // ignore_for_file: non_constant_identifier_names, library_private_types_in_public_api
 
 import 'package:baby_tracker_app/app/core/hive/datasource/sleep_datasource.dart';
+import 'package:baby_tracker_app/app/core/hive/datasource/symptomps_datasource.dart';
 import 'package:baby_tracker_app/app/core/hive/model/feeding_model.dart';
 import 'package:baby_tracker_app/app/core/hive/model/sleep_model.dart';
+import 'package:baby_tracker_app/app/core/hive/model/symptomps_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-
 import '../../../../core/getIt/locator.dart';
 import '../../../../core/hive/datasource/feeding_datasource.dart';
 part 'calender_viewmodel.g.dart';
@@ -13,8 +14,9 @@ part 'calender_viewmodel.g.dart';
 class CalenderViewModel = _CalenderViewModelBase with _$CalenderViewModel;
 
 abstract class _CalenderViewModelBase with Store {
-  final feedingDatasource = locator.get<FeedingDatasource>();
-  final sleepDatasource = locator.get<SleepDatasource>();
+  var feedingDatasource = locator.get<FeedingDatasource>();
+  var sleepDatasource = locator.get<SleepDatasource>();
+  var symptompsDatasource = locator.get<SymptompsDatasource>();
 
   @observable
   DateTime dateTime = DateTime.now();
@@ -24,6 +26,9 @@ abstract class _CalenderViewModelBase with Store {
 
   @observable
   List<Sleep> sleepList = [];
+
+  @observable
+  List<Symptomps> symptompsList = [];
 
   @observable
   bool isSelected = false;
@@ -36,6 +41,7 @@ abstract class _CalenderViewModelBase with Store {
   Future<void> init() async {
     await getFeeding();
     await getSleep();
+    await getSymptomps();
   }
 
   @action
@@ -103,5 +109,36 @@ abstract class _CalenderViewModelBase with Store {
   Future<void> refreshSleepList() async {
     var sleepData = await sleepDatasource.getAll();
     sleepList = sleepData.data ?? [];
+  }
+
+  //ALL SYMPTOMPS FUNCTİON
+  @action
+  void toogleSelected2(int index) {
+    var symptomps = symptompsList[index];
+    var updatedSymptomps = symptomps.copyWith(isSelected: !symptomps.isSelected);
+    symptompsList = List.from(symptompsList)..[index] = updatedSymptomps;
+  }
+
+  @action
+  Future<void> getSymptomps() async {
+    var symptompsData = await symptompsDatasource.getAll();
+    symptompsList.addAll(symptompsData.data!);
+  }
+
+  @action
+  void addSymptompsToList(Symptomps newSymptomps) {
+    symptompsList = List.from(symptompsList)..add(newSymptomps);
+  }
+
+  @action
+  Future<void> deleteSymptomps(String id) async {
+    await symptompsDatasource.delete(id);
+    symptompsList.removeWhere((symptomps) => symptomps.id.toString() == id);
+  }
+
+  @action
+  Future<void> refreshSymptompsList() async {
+    var sympData = await symptompsDatasource.getAll();
+    symptompsList = sympData.data ?? [];
   }
 }

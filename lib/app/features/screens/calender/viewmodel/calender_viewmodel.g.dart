@@ -57,6 +57,22 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     });
   }
 
+  late final _$symptompsListAtom =
+      Atom(name: '_CalenderViewModelBase.symptompsList', context: context);
+
+  @override
+  List<Symptomps> get symptompsList {
+    _$symptompsListAtom.reportRead();
+    return super.symptompsList;
+  }
+
+  @override
+  set symptompsList(List<Symptomps> value) {
+    _$symptompsListAtom.reportWrite(value, super.symptompsList, () {
+      super.symptompsList = value;
+    });
+  }
+
   late final _$isSelectedAtom =
       Atom(name: '_CalenderViewModelBase.isSelected', context: context);
 
@@ -131,6 +147,32 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     return _$refreshSleepListAsyncAction.run(() => super.refreshSleepList());
   }
 
+  late final _$getSymptompsAsyncAction =
+      AsyncAction('_CalenderViewModelBase.getSymptomps', context: context);
+
+  @override
+  Future<void> getSymptomps() {
+    return _$getSymptompsAsyncAction.run(() => super.getSymptomps());
+  }
+
+  late final _$deleteSymptompsAsyncAction =
+      AsyncAction('_CalenderViewModelBase.deleteSymptomps', context: context);
+
+  @override
+  Future<void> deleteSymptomps(String id) {
+    return _$deleteSymptompsAsyncAction.run(() => super.deleteSymptomps(id));
+  }
+
+  late final _$refreshSymptompsListAsyncAction = AsyncAction(
+      '_CalenderViewModelBase.refreshSymptompsList',
+      context: context);
+
+  @override
+  Future<void> refreshSymptompsList() {
+    return _$refreshSymptompsListAsyncAction
+        .run(() => super.refreshSymptompsList());
+  }
+
   late final _$_CalenderViewModelBaseActionController =
       ActionController(name: '_CalenderViewModelBase', context: context);
 
@@ -190,11 +232,34 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
   }
 
   @override
+  void toogleSelected2(int index) {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.toogleSelected2');
+    try {
+      return super.toogleSelected2(index);
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addSymptompsToList(Symptomps newSymptomps) {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.addSymptompsToList');
+    try {
+      return super.addSymptompsToList(newSymptomps);
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 dateTime: ${dateTime},
 feedingList: ${feedingList},
 sleepList: ${sleepList},
+symptompsList: ${symptompsList},
 isSelected: ${isSelected}
     ''';
   }

@@ -2,10 +2,12 @@ import 'package:baby_tracker_app/app/core/hive/datasource/symptomps_datasource.d
 import 'package:baby_tracker_app/app/features/model/symptomps_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../core/constants/images_constants.dart';
 import '../../../../core/constants/text_constants.dart';
 import '../../../../core/getIt/locator.dart';
+import '../../../../core/hive/model/symptomps_model.dart';
 import '../../calender/viewmodel/calender_viewmodel.dart';
 import '../view/symptomps_page.dart';
 part 'symptomps_viewmodel.g.dart';
@@ -13,7 +15,7 @@ part 'symptomps_viewmodel.g.dart';
 class SymptompsViewmodel = _SymptompsViewmodelBase with _$SymptompsViewmodel;
 
 abstract class _SymptompsViewmodelBase with Store {
-  var sleepDatasource = locator.get<SymptompsDatasource>();
+  var symptompsDatasource = locator.get<SymptompsDatasource>();
   var calenderViewModel = locator.get<CalenderViewModel>();
 
   @observable
@@ -88,5 +90,27 @@ abstract class _SymptompsViewmodelBase with Store {
         selectedIndices.add(symptopmsModel);
       }
     });
+  }
+
+  Future<void> addSymptomps() async {
+    var uuid = const Uuid();
+    if (time3 != null) {
+      final now = DateTime.now();
+      final symptompsTime = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        time3!.hour,
+        time3!.minute,
+      );
+
+      Symptomps symptompsModel = Symptomps(
+        id: uuid.v4(),
+        symTime: symptompsTime,
+        sympList: symptompsList,
+        text: noteController.text,
+      );
+      await symptompsDatasource.add(symptompsModel);
+    }
   }
 }
