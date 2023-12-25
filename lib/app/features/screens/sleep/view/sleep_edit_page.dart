@@ -64,6 +64,7 @@ class _SleepPageEditState extends State<SleepPageEdit> {
                 GestureDetector(
                   onTap: () {
                     sleepViewmodel.selectTime1(context);
+                    sleepViewmodel.changeVisible();
                   },
                   child: CustomTimePicker(
                     text: sleepViewmodel.time1 != null
@@ -77,6 +78,7 @@ class _SleepPageEditState extends State<SleepPageEdit> {
                   child: GestureDetector(
                     onTap: () {
                       sleepViewmodel.selectTime2(context);
+                      sleepViewmodel.changeVisible();
                     },
                     child: CustomTimePicker(
                       text: sleepViewmodel.time2 != null

@@ -69,11 +69,13 @@ class _FeedingEditState extends State<FeedingEdit> {
                     GestureDetector(
                       onTap: () {
                         viewmodel.selectTime(context);
+                        viewmodel.changeVisible();
                       },
                       child: CustomTimePicker(
-                        text: viewmodel.time != null ? viewmodel.time!.format(context) : time,
-                        color: viewmodel.time != null ? cblack : settingsIndex,
-                      ),
+                          text: viewmodel.time != null
+                              ? viewmodel.time!.format(context)
+                              : '${widget.time.hour.toString()}:${widget.time.minute.toString()}',
+                          color: cblack),
                     ),
                     AmountTextField(controller: _amountController),
                     CustomNoteTextfield(
