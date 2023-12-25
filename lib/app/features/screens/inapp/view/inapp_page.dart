@@ -26,7 +26,7 @@ class InAppPage extends StatelessWidget {
           ),
           Padding(
               padding: EdgeInsets.only(right: displayWidth(context) * 0.25),
-              child: Image.asset(ImageConstants.inApp // Adjust as needed
+              child: Image.asset(inApp // Adjust as needed
                   )),
           AspectRatio(aspectRatio: displayHeight(context) * 0.02),
           const GetPremium(),

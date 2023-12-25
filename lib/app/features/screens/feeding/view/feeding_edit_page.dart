@@ -106,7 +106,7 @@ class _FeedingEditState extends State<FeedingEdit> {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                   child: Container(
-                      color: Colors.black.withOpacity(0), child: Center(child: Lottie.asset(ImageConstants.lottie))),
+                      color: Colors.black.withOpacity(0), child: Center(child: Lottie.asset(lottie))),
                 ),
               ),
           ],

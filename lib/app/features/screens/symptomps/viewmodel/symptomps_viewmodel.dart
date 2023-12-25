@@ -2,6 +2,8 @@ import 'package:baby_tracker_app/app/features/model/symptomps_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../core/constants/images_constants.dart';
+import '../../../../core/constants/text_constants.dart';
 import '../view/symptomps_page.dart';
 part 'symptomps_viewmodel.g.dart';
 
@@ -22,14 +24,14 @@ abstract class _SymptompsViewmodelBase with Store {
 
   @observable
   List<SymptopmsModel> symptompsList = [
-    SymptopmsModel(image: 'assets/images/RunnyNose.png', name: 'Runny Nose'),
-    SymptopmsModel(image: 'assets/images/Heartburn.png', name: 'Heartburn'),
-    SymptopmsModel(image: 'assets/images/Noappetive.png', name: 'No Appetite'),
-    SymptopmsModel(image: 'assets/images/rush.png', name: 'Rush'),
-    SymptopmsModel(image: 'assets/images/lowEnergy.png', name: 'Low Energy'),
-    SymptopmsModel(image: 'assets/images/Nussea.png', name: 'Nausea'),
-    SymptopmsModel(image: 'assets/images/Cough.png', name: 'Cough'),
-    SymptopmsModel(image: 'assets/images/Fever.png', name: 'Fever'),
+    SymptopmsModel(image: runnyNose, name: runnyNoseT),
+    SymptopmsModel(image: heartburn, name: heartburnT),
+    SymptopmsModel(image: noAppetite, name: noAppetiteT),
+    SymptopmsModel(image: rush, name: rushT),
+    SymptopmsModel(image: lowEnergy, name: lowEnergyT),
+    SymptopmsModel(image: nausea, name: nauseaT),
+    SymptopmsModel(image: cough, name: coughT),
+    SymptopmsModel(image: fever, name: feverT),
   ];
 
   @observable

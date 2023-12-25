@@ -16,13 +16,13 @@ class SettingsPage extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {},
-            child: Image.asset(ImageConstants.settingsPremium, height: displayHeight(context) * 0.09),
+            child: Image.asset(settingsPremium, height: displayHeight(context) * 0.09),
           ),
-          const CustomSettingsContainer(text: rateUs, image: ImageConstants.s1),
-          const CustomSettingsContainer(text: termsofuse, image: ImageConstants.s2),
-          const CustomSettingsContainer(text: privacy, image: ImageConstants.s3),
-          const CustomSettingsContainer(text: contact, image: ImageConstants.s4),
-          const CustomSettingsContainer(text: restore, image: ImageConstants.s5),
+          const CustomSettingsContainer(text: rateUs, image: s1),
+          const CustomSettingsContainer(text: termsofuse, image: s2),
+          const CustomSettingsContainer(text: privacy, image: s3),
+          const CustomSettingsContainer(text: contact, image: s4),
+          const CustomSettingsContainer(text: restore, image: s5),
         ],
       ),
     );

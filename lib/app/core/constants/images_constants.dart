@@ -1,24 +1,32 @@
-class ImageConstants {
-  //onboarding
-  static const String onboarding1 = 'assets/images/onb1.png';
-  static const String onboarding2 = 'assets/images/onb2.png';
+//onboarding
+const String onboarding1 = 'assets/images/onb1.png';
+const String onboarding2 = 'assets/images/onb2.png';
 
-  //InApp
-  static const String inApp = 'assets/images/pre1.png';
+//InApp
+const String inApp = 'assets/images/pre1.png';
 
-  //home
-  static const String homeImage1 = 'assets/images/Feeding.png';
-  static const String homeImage2 = 'assets/images/Sleep.png';
-  static const String homeImage3 = 'assets/images/Symptomps.png';
+//home
+const String homeImage1 = 'assets/images/Feeding.png';
+const String homeImage2 = 'assets/images/Sleep.png';
+const String homeImage3 = 'assets/images/Symptomps.png';
 
-  //Settings
-  static const String settingsPremium = 'assets/images/Premium.png';
-  static const String s1 = 'assets/images/s1.png';
-  static const String s2 = 'assets/images/s2.png';
-  static const String s3 = 'assets/images/s3.png';
-  static const String s4 = 'assets/images/s4.png';
-  static const String s5 = 'assets/images/s5.png';
+//Settings
+const String settingsPremium = 'assets/images/Premium.png';
+const String s1 = 'assets/images/s1.png';
+const String s2 = 'assets/images/s2.png';
+const String s3 = 'assets/images/s3.png';
+const String s4 = 'assets/images/s4.png';
+const String s5 = 'assets/images/s5.png';
 
-  //Lottie
-  static const String lottie = 'assets/lottie/saved.json';
-}
+//Lottie
+const String lottie = 'assets/lottie/saved.json';
+
+//symptompsList Images
+const String runnyNose = 'assets/images/RunnyNose.png';
+const String heartburn = 'assets/images/Heartburn.png';
+const String noAppetite = 'assets/images/Noappetive.png';
+const String rush = 'assets/images/rush.png';
+const String lowEnergy = 'assets/images/lowEnergy.png';
+const String nausea = 'assets/images/Nussea.png';
+const String cough = 'assets/images/Cough.png';
+const String fever = 'assets/images/Fever.png';

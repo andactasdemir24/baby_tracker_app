@@ -18,8 +18,8 @@ abstract class _OnboardingViewmodelBase with Store {
 
   @observable
   List<OnboardingModel> onbList = [
-    OnboardingModel(ImageConstants.onboarding1, onb1Title, onb1Description),
-    OnboardingModel(ImageConstants.onboarding2, onb2Title, onb2Description),
+    OnboardingModel(onboarding1, onb1Title, onb1Description),
+    OnboardingModel(onboarding2, onb2Title, onb2Description),
   ];
 
   @observable

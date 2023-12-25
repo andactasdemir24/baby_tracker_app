@@ -50,3 +50,13 @@ const String symptomos = 'Symptomps';
 
 //Calender
 const String calenderAppbar = 'Calender';
+
+//SymptompsList names
+const String runnyNoseT = 'Runny Nose';
+const String heartburnT = 'Heartburn';
+const String noAppetiteT = 'No Appetite';
+const String rushT = 'Rush';
+const String lowEnergyT = 'Low Energy';
+const String nauseaT = 'Nausea';
+const String coughT = 'Cough';
+const String feverT = 'Fever';
