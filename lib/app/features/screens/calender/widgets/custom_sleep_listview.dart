@@ -1,24 +1,24 @@
-import 'package:baby_tracker_app/app/core/hive/model/feeding_model.dart';
-import 'package:baby_tracker_app/app/features/screens/feeding/view/feeding_edit_page.dart';
+import 'package:baby_tracker_app/app/features/screens/sleep/view/sleep_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/constants/color_constants.dart';
 import '../../../../core/constants/mediaquery_constants.dart';
 import '../../../../core/getIt/locator.dart';
+import '../../../../core/hive/model/sleep_model.dart';
 import '../../../theme/baby_icons.dart';
 import '../viewmodel/calender_viewmodel.dart';
 
-class CustomFeedigListView extends StatelessWidget {
-  const CustomFeedigListView({super.key});
+class CustomSleepListView extends StatelessWidget {
+  const CustomSleepListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final calenderViewmodel = locator.get<CalenderViewModel>();
     return Observer(builder: (context) {
       return ListView.builder(
-        itemCount: calenderViewmodel.feedingList.length,
+        itemCount: calenderViewmodel.sleepList.length,
         itemBuilder: (context, index) {
-          var feeding = calenderViewmodel.feedingList[index];
+          var sleep = calenderViewmodel.sleepList[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Column(
@@ -26,7 +26,7 @@ class CustomFeedigListView extends StatelessWidget {
                 Center(child: Observer(
                   builder: (context) {
                     return Dismissible(
-                      key: Key(feeding.id!),
+                      key: Key(sleep.id!),
                       background: Container(
                         color: Colors.red,
                         alignment: Alignment.centerRight,
@@ -35,28 +35,27 @@ class CustomFeedigListView extends StatelessWidget {
                       ),
                       direction: DismissDirection.endToStart,
                       onDismissed: (direction) {
-                        calenderViewmodel.deleteFeeding(feeding.id!);
+                        calenderViewmodel.deleteSleep(sleep.id!);
                       },
                       child: GestureDetector(
                           onDoubleTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => FeedingEdit(
-                                      id: feeding.id!,
-                                      time: feeding.time!,
-                                      amount: feeding.amount!,
-                                      note: feeding.text!),
-                                ));
+                                    builder: (context) => SleepPageEdit(
+                                        id: sleep.id!,
+                                        feelSleep: sleep.fellSleep!,
+                                        wokeUp: sleep.wokeUp!,
+                                        note: sleep.text!)));
                           },
                           onTap: () {
-                            calenderViewmodel.toggleSelected(index);
+                            calenderViewmodel.toggleSelected1(index);
                           },
                           child: AnimatedContainer(
                             duration: const Duration(seconds: 1),
                             curve: Curves.easeInCirc,
                             width: displayWidth(context) * 0.8878,
-                            height: feeding.isSelected ? displayHeight(context) * 0.12 : displayHeight(context) * 0.075,
+                            height: sleep.isSelected ? displayHeight(context) * 0.12 : displayHeight(context) * 0.075,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               color: annualColor,
@@ -64,7 +63,7 @@ class CustomFeedigListView extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: !feeding.isSelected ? notpress(feeding) : whenipress(feeding),
+                              child: !sleep.isSelected ? notpress(sleep) : whenipress(sleep),
                             ),
                           )),
                     );
@@ -78,26 +77,27 @@ class CustomFeedigListView extends StatelessWidget {
     });
   }
 
-  Row notpress(Feeding feeding) {
+  Row notpress(Sleep sleep) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Baby.feed, size: 30, color: mainIconColor),
-            Text('${feeding.amount} (ml)',
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
+            const Icon(Baby.sleep, size: 30, color: mainIconColor),
+            Text('Feel sleep: ${sleep.fellSleep!.hour}:${sleep.fellSleep!.minute}',
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
           ],
         ),
+        const Text('/'),
         Text(
-            '${feeding.time?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${feeding.time?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
+            'Woke up: ${sleep.wokeUp?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${sleep.wokeUp?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
       ],
     );
   }
 
-  Padding whenipress(Feeding feeding) {
+  Padding whenipress(Sleep sleep) {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: Column(
@@ -108,13 +108,14 @@ class CustomFeedigListView extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Baby.feed, size: 30, color: mainIconColor),
-                  Text('${feeding.amount} (ml)',
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
+                  const Icon(Baby.sleep, size: 30, color: mainIconColor),
+                  Text('Feel sleep: ${sleep.fellSleep!.hour}:${sleep.fellSleep!.minute}',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                 ],
               ),
+              const Text('/'),
               Text(
-                  '${feeding.time?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${feeding.time?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
+                  'Woke up: ${sleep.wokeUp?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${sleep.wokeUp?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
                   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             ],
           ),
@@ -122,7 +123,7 @@ class CustomFeedigListView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Note: ${feeding.text.toString()}',
+                child: Text('Note: ${sleep.text.toString()}',
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,

@@ -105,6 +105,22 @@ mixin _$SleepViewModel on _SleepViewModelBase, Store {
     return _$selectTime2AsyncAction.run(() => super.selectTime2(context));
   }
 
+  late final _$addSleepAsyncAction =
+      AsyncAction('_SleepViewModelBase.addSleep', context: context);
+
+  @override
+  Future<void> addSleep() {
+    return _$addSleepAsyncAction.run(() => super.addSleep());
+  }
+
+  late final _$updateSleepAsyncAction =
+      AsyncAction('_SleepViewModelBase.updateSleep', context: context);
+
+  @override
+  Future<void> updateSleep(Sleep sleep) {
+    return _$updateSleepAsyncAction.run(() => super.updateSleep(sleep));
+  }
+
   late final _$_SleepViewModelBaseActionController =
       ActionController(name: '_SleepViewModelBase', context: context);
 

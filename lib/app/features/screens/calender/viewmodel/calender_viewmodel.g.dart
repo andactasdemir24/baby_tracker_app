@@ -41,6 +41,22 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     });
   }
 
+  late final _$sleepListAtom =
+      Atom(name: '_CalenderViewModelBase.sleepList', context: context);
+
+  @override
+  List<Sleep> get sleepList {
+    _$sleepListAtom.reportRead();
+    return super.sleepList;
+  }
+
+  @override
+  set sleepList(List<Sleep> value) {
+    _$sleepListAtom.reportWrite(value, super.sleepList, () {
+      super.sleepList = value;
+    });
+  }
+
   late final _$isSelectedAtom =
       Atom(name: '_CalenderViewModelBase.isSelected', context: context);
 
@@ -91,8 +107,43 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
         .run(() => super.refreshFeedingList());
   }
 
+  late final _$getSleepAsyncAction =
+      AsyncAction('_CalenderViewModelBase.getSleep', context: context);
+
+  @override
+  Future<void> getSleep() {
+    return _$getSleepAsyncAction.run(() => super.getSleep());
+  }
+
+  late final _$deleteSleepAsyncAction =
+      AsyncAction('_CalenderViewModelBase.deleteSleep', context: context);
+
+  @override
+  Future<void> deleteSleep(String id) {
+    return _$deleteSleepAsyncAction.run(() => super.deleteSleep(id));
+  }
+
+  late final _$refreshSleepListAsyncAction =
+      AsyncAction('_CalenderViewModelBase.refreshSleepList', context: context);
+
+  @override
+  Future<void> refreshSleepList() {
+    return _$refreshSleepListAsyncAction.run(() => super.refreshSleepList());
+  }
+
   late final _$_CalenderViewModelBaseActionController =
       ActionController(name: '_CalenderViewModelBase', context: context);
+
+  @override
+  Future<DateTime?> pickDate(BuildContext context) {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.pickDate');
+    try {
+      return super.pickDate(context);
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void toggleSelected(int index) {
@@ -117,11 +168,22 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
   }
 
   @override
-  Future<DateTime?> pickDate(BuildContext context) {
+  void toggleSelected1(int index) {
     final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
-        name: '_CalenderViewModelBase.pickDate');
+        name: '_CalenderViewModelBase.toggleSelected1');
     try {
-      return super.pickDate(context);
+      return super.toggleSelected1(index);
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addSleepToList(Sleep newSleep) {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.addSleepToList');
+    try {
+      return super.addSleepToList(newSleep);
     } finally {
       _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -132,6 +194,7 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     return '''
 dateTime: ${dateTime},
 feedingList: ${feedingList},
+sleepList: ${sleepList},
 isSelected: ${isSelected}
     ''';
   }

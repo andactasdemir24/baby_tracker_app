@@ -8,6 +8,7 @@ import '../../../../core/getIt/locator.dart';
 import '../../../theme/baby_icons.dart';
 import '../widgets/custom_datebutton.dart';
 import '../widgets/custom_feeding_listview.dart';
+import '../widgets/custom_sleep_listview.dart';
 
 class CalenderPage extends StatefulWidget {
   const CalenderPage({super.key});
@@ -69,10 +70,12 @@ class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMix
                     child: Text("It's cloudy here"),
                   ),
                   Observer(builder: (_) {
-                    return const CustomListView();
+                    return const CustomFeedigListView();
                   }),
-                  const Center(
-                    child: Text("It's rainy here"),
+                  Observer(
+                    builder: (context) {
+                      return const CustomSleepListView();
+                    },
                   ),
                   const Center(
                     child: Text("It's sunny here"),

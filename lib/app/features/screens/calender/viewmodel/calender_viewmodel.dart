@@ -1,6 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, library_private_types_in_public_api
 
+import 'package:baby_tracker_app/app/core/hive/datasource/sleep_datasource.dart';
 import 'package:baby_tracker_app/app/core/hive/model/feeding_model.dart';
+import 'package:baby_tracker_app/app/core/hive/model/sleep_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,12 +14,16 @@ class CalenderViewModel = _CalenderViewModelBase with _$CalenderViewModel;
 
 abstract class _CalenderViewModelBase with Store {
   final feedingDatasource = locator.get<FeedingDatasource>();
+  final sleepDatasource = locator.get<SleepDatasource>();
 
   @observable
   DateTime dateTime = DateTime.now();
 
   @observable
   List<Feeding> feedingList = [];
+
+  @observable
+  List<Sleep> sleepList = [];
 
   @observable
   bool isSelected = false;
@@ -29,9 +35,14 @@ abstract class _CalenderViewModelBase with Store {
   @action
   Future<void> init() async {
     await getFeeding();
+    await getSleep();
   }
 
-  //ALL FEEDİNG FUNCTİON
+  @action
+  Future<DateTime?> pickDate(BuildContext context) =>
+      showDatePicker(context: context, initialDate: dateTime, firstDate: DateTime(1900), lastDate: DateTime(2100));
+
+  //ALL FEEDİNG FUNCTİON -------------
   //bastığım indexe göre algılama
   @action
   void toggleSelected(int index) {
@@ -63,7 +74,34 @@ abstract class _CalenderViewModelBase with Store {
     feedingList = feedingData.data ?? [];
   }
 
+  //ALL SLEEP FUNCTİON --------
   @action
-  Future<DateTime?> pickDate(BuildContext context) =>
-      showDatePicker(context: context, initialDate: dateTime, firstDate: DateTime(1900), lastDate: DateTime(2100));
+  void toggleSelected1(int index) {
+    var sleep = sleepList[index];
+    var updatedSleep = sleep.copyWith(isSelected: !sleep.isSelected);
+    sleepList = List.from(sleepList)..[index] = updatedSleep;
+  }
+
+  @action
+  Future<void> getSleep() async {
+    var sleepData = await sleepDatasource.getAll();
+    sleepList.addAll(sleepData.data!);
+  }
+
+  @action
+  void addSleepToList(Sleep newSleep) {
+    sleepList = List.from(sleepList)..add(newSleep);
+  }
+
+  @action
+  Future<void> deleteSleep(String id) async {
+    await sleepDatasource.delete(id);
+    sleepList.removeWhere((sleep) => sleep.id.toString() == id);
+  }
+
+  @action
+  Future<void> refreshSleepList() async {
+    var sleepData = await sleepDatasource.getAll();
+    sleepList = sleepData.data ?? [];
+  }
 }

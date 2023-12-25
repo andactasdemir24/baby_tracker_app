@@ -1,12 +1,20 @@
+import 'package:baby_tracker_app/app/core/hive/datasource/sleep_datasource.dart';
+import 'package:baby_tracker_app/app/core/hive/model/sleep_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:uuid/uuid.dart';
 
+import '../../../../core/getIt/locator.dart';
+import '../../calender/viewmodel/calender_viewmodel.dart';
 import '../../home/view/home_page.dart';
 part 'sleep_viewmodel.g.dart';
 
 class SleepViewModel = _SleepViewModelBase with _$SleepViewModel;
 
 abstract class _SleepViewModelBase with Store {
+  final sleepDatasource = locator.get<SleepDatasource>();
+  final calenderViewModel = locator.get<CalenderViewModel>();
+
   @observable
   TimeOfDay? time1;
 
@@ -68,5 +76,75 @@ abstract class _SleepViewModelBase with Store {
     time2 = null;
     noteController.clear();
     changeVisible();
+  }
+
+  @action
+  Future<void> addSleep() async {
+    var uuid = const Uuid();
+    if (time1 != null && time2 != null) {
+      final now = DateTime.now();
+      final sleepTime = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        time1!.hour,
+        time1!.minute,
+      );
+      final wokeUp = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        time2!.hour,
+        time2!.minute,
+      );
+      Sleep sleepModel = Sleep(
+        id: uuid.v4(),
+        fellSleep: sleepTime,
+        wokeUp: wokeUp,
+        text: noteController.text,
+      );
+      await sleepDatasource.add(sleepModel);
+      calenderViewModel.addSleepToList(sleepModel);
+    }
+  }
+
+  @action
+  Future<void> updateSleep(Sleep sleep) async {
+    DateTime? updatedTime = sleep.fellSleep;
+    DateTime? updatedTime2 = sleep.wokeUp;
+    String? updatedText = sleep.text;
+
+    if (time1 != null) {
+      updatedTime = DateTime(
+        sleep.fellSleep!.year,
+        sleep.fellSleep!.month,
+        sleep.fellSleep!.day,
+        time1!.hour,
+        time1!.minute,
+      );
+    }
+    if (time2 != null) {
+      updatedTime2 = DateTime(
+        sleep.wokeUp!.year,
+        sleep.wokeUp!.month,
+        sleep.wokeUp!.day,
+        time2!.hour,
+        time2!.minute,
+      );
+    }
+
+    if (noteController.text.isNotEmpty) {
+      updatedText = noteController.text;
+    }
+
+    Sleep updateSleep = Sleep(
+      id: sleep.id,
+      fellSleep: updatedTime,
+      wokeUp: updatedTime2,
+      text: updatedText,
+    );
+
+    await sleepDatasource.update(updateSleep);
+    await calenderViewModel.refreshSleepList();
   }
 }
