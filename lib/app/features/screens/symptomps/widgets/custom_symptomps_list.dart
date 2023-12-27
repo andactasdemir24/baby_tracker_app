@@ -1,4 +1,4 @@
-import 'package:baby_tracker_app/app/features/model/symptomps_model.dart';
+import 'package:baby_tracker_app/app/features/model/symptomps_model_f.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -44,12 +44,12 @@ class _CustomSymptompsListContainerState extends State<CustomSymptompsListContai
               child: Column(
                 children: [
                   Image.asset(
-                    widget.symptomp.image,
+                    widget.symptomp.image!,
                     height: displayHeight(context) * 0.115,
                   ),
                   SizedBox(height: displayHeight(context) * 0.02),
                   Text(
-                    widget.symptomp.name,
+                    widget.symptomp.name!,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import '../../../features/model/symptomps_model.dart';
+import '../../../features/model/symptomps_model_f.dart';
 
 part 'symptomps_model.g.dart';
 

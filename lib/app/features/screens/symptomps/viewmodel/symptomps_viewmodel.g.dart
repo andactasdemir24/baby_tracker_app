@@ -105,6 +105,22 @@ mixin _$SymptompsViewmodel on _SymptompsViewmodelBase, Store {
     });
   }
 
+  late final _$isBlurred4Atom =
+      Atom(name: '_SymptompsViewmodelBase.isBlurred4', context: context);
+
+  @override
+  bool get isBlurred4 {
+    _$isBlurred4Atom.reportRead();
+    return super.isBlurred4;
+  }
+
+  @override
+  set isBlurred4(bool value) {
+    _$isBlurred4Atom.reportWrite(value, super.isBlurred4, () {
+      super.isBlurred4 = value;
+    });
+  }
+
   late final _$selectTime3AsyncAction =
       AsyncAction('_SymptompsViewmodelBase.selectTime3', context: context);
 
@@ -139,6 +155,23 @@ mixin _$SymptompsViewmodel on _SymptompsViewmodelBase, Store {
         .run(() => super.toggleSelectedIndex(symptopmsModel));
   }
 
+  late final _$addSymptompsAsyncAction =
+      AsyncAction('_SymptompsViewmodelBase.addSymptomps', context: context);
+
+  @override
+  Future<void> addSymptomps() {
+    return _$addSymptompsAsyncAction.run(() => super.addSymptomps());
+  }
+
+  late final _$updateSymptompsAsyncAction =
+      AsyncAction('_SymptompsViewmodelBase.updateSymptomps', context: context);
+
+  @override
+  Future<void> updateSymptomps(Symptomps symptomps) {
+    return _$updateSymptompsAsyncAction
+        .run(() => super.updateSymptomps(symptomps));
+  }
+
   late final _$_SymptompsViewmodelBaseActionController =
       ActionController(name: '_SymptompsViewmodelBase', context: context);
 
@@ -154,6 +187,17 @@ mixin _$SymptompsViewmodel on _SymptompsViewmodelBase, Store {
   }
 
   @override
+  void toggleBlur4(BuildContext context) {
+    final _$actionInfo = _$_SymptompsViewmodelBaseActionController.startAction(
+        name: '_SymptompsViewmodelBase.toggleBlur4');
+    try {
+      return super.toggleBlur4(context);
+    } finally {
+      _$_SymptompsViewmodelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 time3: ${time3},
@@ -161,7 +205,8 @@ noteController: ${noteController},
 isButtonVisible3: ${isButtonVisible3},
 selectedIndices: ${selectedIndices},
 symptompsList: ${symptompsList},
-isBlurred3: ${isBlurred3}
+isBlurred3: ${isBlurred3},
+isBlurred4: ${isBlurred4}
     ''';
   }
 }

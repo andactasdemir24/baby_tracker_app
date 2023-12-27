@@ -2,6 +2,7 @@ import 'package:baby_tracker_app/app/core/components/custom_widgets/custom_appba
 import 'package:baby_tracker_app/app/core/constants/color_constants.dart';
 import 'package:baby_tracker_app/app/core/constants/text_constants.dart';
 import 'package:baby_tracker_app/app/features/screens/calender/viewmodel/calender_viewmodel.dart';
+import 'package:baby_tracker_app/app/features/screens/calender/widgets/custom_symptomps_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/getIt/locator.dart';
@@ -25,6 +26,9 @@ class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMix
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    calenderViewmodel.getSymptomps();
+    calenderViewmodel.getFeeding();
+    calenderViewmodel.getSleep();
   }
 
   @override
@@ -73,13 +77,13 @@ class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMix
                     return const CustomFeedigListView();
                   }),
                   Observer(
-                    builder: (context) {
+                    builder: (_) {
                       return const CustomSleepListView();
                     },
                   ),
-                  const Center(
-                    child: Text("It's sunny here"),
-                  ),
+                  Observer(builder: (_) {
+                    return const CustomSymptompsListView();
+                  })
                 ],
               ),
             ),

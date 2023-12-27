@@ -87,7 +87,13 @@ class _FeedingEditState extends State<FeedingEdit> {
                       return CustomButton(
                         text: const Text(update, style: TextStyle(color: cwhite)),
                         onPressed: () {
-                          final value = Feeding(
+                          try {
+                            int.parse(_amountController.text);
+                          } catch (e) {
+                            viewmodel.showMyDialog(context);
+                            return;
+                          }
+                          var value = Feeding(
                               id: widget.id,
                               time: widget.time,
                               amount: int.parse(_amountController.text),
@@ -105,8 +111,7 @@ class _FeedingEditState extends State<FeedingEdit> {
               Positioned.fill(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                  child: Container(
-                      color: Colors.black.withOpacity(0), child: Center(child: Lottie.asset(lottie))),
+                  child: Container(color: Colors.black.withOpacity(0), child: Center(child: Lottie.asset(lottie))),
                 ),
               ),
           ],

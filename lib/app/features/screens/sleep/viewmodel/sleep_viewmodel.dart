@@ -3,10 +3,8 @@ import 'package:baby_tracker_app/app/core/hive/model/sleep_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:uuid/uuid.dart';
-
 import '../../../../core/getIt/locator.dart';
 import '../../calender/viewmodel/calender_viewmodel.dart';
-import '../../home/view/home_page.dart';
 part 'sleep_viewmodel.g.dart';
 
 class SleepViewModel = _SleepViewModelBase with _$SleepViewModel;
@@ -35,9 +33,7 @@ abstract class _SleepViewModelBase with Store {
     if (!isBlurred2) {
       isBlurred2 = true;
       Future.delayed(const Duration(milliseconds: 1500), () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (BuildContext context) => const HomePage(),
-        ));
+        Navigator.of(context).pop();
         isBlurred2 = false;
       });
     }
@@ -104,7 +100,6 @@ abstract class _SleepViewModelBase with Store {
         text: noteController.text,
       );
       await sleepDatasource.add(sleepModel);
-      calenderViewModel.addSleepToList(sleepModel);
     }
   }
 
@@ -131,10 +126,6 @@ abstract class _SleepViewModelBase with Store {
         time2!.hour,
         time2!.minute,
       );
-    }
-
-    if (noteController.text.isNotEmpty) {
-      updatedText = noteController.text;
     }
 
     Sleep updateSleep = Sleep(

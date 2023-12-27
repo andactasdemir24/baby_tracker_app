@@ -1,15 +1,13 @@
 import 'package:baby_tracker_app/app/core/hive/datasource/symptomps_datasource.dart';
-import 'package:baby_tracker_app/app/features/model/symptomps_model.dart';
+import 'package:baby_tracker_app/app/features/model/symptomps_model_f.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:uuid/uuid.dart';
-
 import '../../../../core/constants/images_constants.dart';
 import '../../../../core/constants/text_constants.dart';
 import '../../../../core/getIt/locator.dart';
 import '../../../../core/hive/model/symptomps_model.dart';
 import '../../calender/viewmodel/calender_viewmodel.dart';
-import '../view/symptomps_page.dart';
 part 'symptomps_viewmodel.g.dart';
 
 class SymptompsViewmodel = _SymptompsViewmodelBase with _$SymptompsViewmodel;
@@ -45,15 +43,28 @@ abstract class _SymptompsViewmodelBase with Store {
   @observable
   bool isBlurred3 = false;
 
+  @observable
+  bool isBlurred4 = false;
+
   @action
   void toggleBlur3(BuildContext context) {
     if (!isBlurred3) {
       isBlurred3 = true;
       Future.delayed(const Duration(milliseconds: 1500), () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (BuildContext context) => const SymptompsPage(),
-        ));
+        Navigator.of(context).pop();
         isBlurred3 = false;
+      });
+    }
+  }
+
+  @action
+  void toggleBlur4(BuildContext context) {
+    if (!isBlurred4) {
+      isBlurred4 = true;
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        Navigator.of(context).pop();
+
+        isBlurred4 = false;
       });
     }
   }
@@ -87,11 +98,14 @@ abstract class _SymptompsViewmodelBase with Store {
       if (selectedIndices.contains(symptopmsModel)) {
         selectedIndices.remove(symptopmsModel);
       } else {
-        selectedIndices.add(symptopmsModel);
+        if (selectedIndices.length < 2) {
+          selectedIndices.add(symptopmsModel);
+        }
       }
     });
   }
 
+  @action
   Future<void> addSymptomps() async {
     var uuid = const Uuid();
     if (time3 != null) {
@@ -104,13 +118,44 @@ abstract class _SymptompsViewmodelBase with Store {
         time3!.minute,
       );
 
+      // // sympList için her öğe için yeni bir SymptopmsModel oluşturma
+      // var newSympList = selectedIndices
+      //     .map((symptopmsModel) => SymptopmsModel(image: symptopmsModel.image, name: symptopmsModel.name))
+      //     .toList();
+
       Symptomps symptompsModel = Symptomps(
         id: uuid.v4(),
         symTime: symptompsTime,
-        sympList: symptompsList,
+        sympList: selectedIndices,
         text: noteController.text,
       );
       await symptompsDatasource.add(symptompsModel);
     }
+  }
+
+  @action
+  Future<void> updateSymptomps(Symptomps symptomps) async {
+    DateTime? updatedTime = symptomps.symTime;
+    String? updatedText = symptomps.text;
+
+    if (time3 != null) {
+      updatedTime = DateTime(
+        symptomps.symTime!.year,
+        symptomps.symTime!.month,
+        symptomps.symTime!.day,
+        time3!.hour,
+        time3!.minute,
+      );
+    }
+
+    Symptomps symptompsModel = Symptomps(
+      id: symptomps.id,
+      symTime: updatedTime,
+      sympList: selectedIndices,
+      text: updatedText,
+    );
+
+    await symptompsDatasource.update(symptompsModel);
+    await calenderViewModel.refreshSymptompsList();
   }
 }

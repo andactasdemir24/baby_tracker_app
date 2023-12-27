@@ -97,6 +97,14 @@ mixin _$FeedingViewModel on _FeedingViewModelBase, Store {
     return _$selectTimeAsyncAction.run(() => super.selectTime(context));
   }
 
+  late final _$showMyDialogAsyncAction =
+      AsyncAction('_FeedingViewModelBase.showMyDialog', context: context);
+
+  @override
+  Future<void> showMyDialog(BuildContext context) {
+    return _$showMyDialogAsyncAction.run(() => super.showMyDialog(context));
+  }
+
   late final _$addFeedingAsyncAction =
       AsyncAction('_FeedingViewModelBase.addFeeding', context: context);
 

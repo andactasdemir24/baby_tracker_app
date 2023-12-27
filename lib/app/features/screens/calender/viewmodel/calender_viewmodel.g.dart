@@ -199,17 +199,6 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
   }
 
   @override
-  void addFeedingToList(Feeding newFeeding) {
-    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
-        name: '_CalenderViewModelBase.addFeedingToList');
-    try {
-      return super.addFeedingToList(newFeeding);
-    } finally {
-      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void toggleSelected1(int index) {
     final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
         name: '_CalenderViewModelBase.toggleSelected1');
@@ -221,33 +210,11 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
   }
 
   @override
-  void addSleepToList(Sleep newSleep) {
-    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
-        name: '_CalenderViewModelBase.addSleepToList');
-    try {
-      return super.addSleepToList(newSleep);
-    } finally {
-      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void toogleSelected2(int index) {
     final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
         name: '_CalenderViewModelBase.toogleSelected2');
     try {
       return super.toogleSelected2(index);
-    } finally {
-      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void addSymptompsToList(Symptomps newSymptomps) {
-    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
-        name: '_CalenderViewModelBase.addSymptompsToList');
-    try {
-      return super.addSymptompsToList(newSymptomps);
     } finally {
       _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
     }

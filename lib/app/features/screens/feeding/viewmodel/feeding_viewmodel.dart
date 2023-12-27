@@ -6,7 +6,6 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../core/getIt/locator.dart';
 import '../../calender/viewmodel/calender_viewmodel.dart';
-import '../../home/view/home_page.dart';
 part 'feeding_viewmodel.g.dart';
 
 class FeedingViewModel = _FeedingViewModelBase with _$FeedingViewModel;
@@ -35,9 +34,7 @@ abstract class _FeedingViewModelBase with Store {
     if (!isBlurred) {
       isBlurred = true;
       Future.delayed(const Duration(milliseconds: 1500), () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (BuildContext context) => const HomePage(),
-        ));
+        Navigator.of(context).pop();
         isBlurred = false;
       });
     }
@@ -68,6 +65,34 @@ abstract class _FeedingViewModelBase with Store {
   }
 
   @action
+  Future<void> showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Warning!'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Please fill in the blank fields!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Okey'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @action
   Future<void> addFeeding() async {
     var uuid = const Uuid();
     if (time != null) {
@@ -86,7 +111,6 @@ abstract class _FeedingViewModelBase with Store {
         text: noteController.text,
       );
       await feedingDatasource.add(feedingModel);
-      calenderViewModel.addFeedingToList(feedingModel);
     }
   }
 
@@ -104,13 +128,6 @@ abstract class _FeedingViewModelBase with Store {
         time!.hour,
         time!.minute,
       );
-    }
-
-    if (amountController.text.isNotEmpty) {
-      updatedAmount = int.parse(amountController.text);
-    }
-    if (noteController.text.isNotEmpty) {
-      updatedText = noteController.text;
     }
 
     Feeding updatedFeeding = Feeding(

@@ -58,12 +58,8 @@ abstract class _CalenderViewModelBase with Store {
   }
 
   @action
-  void addFeedingToList(Feeding newFeeding) {
-    feedingList = List.from(feedingList)..add(newFeeding);
-  }
-
-  @action
   Future<void> getFeeding() async {
+    feedingList.clear();
     var feedingData = await feedingDatasource.getAll();
     feedingList.addAll(feedingData.data!);
   }
@@ -90,13 +86,9 @@ abstract class _CalenderViewModelBase with Store {
 
   @action
   Future<void> getSleep() async {
+    sleepList.clear();
     var sleepData = await sleepDatasource.getAll();
     sleepList.addAll(sleepData.data!);
-  }
-
-  @action
-  void addSleepToList(Sleep newSleep) {
-    sleepList = List.from(sleepList)..add(newSleep);
   }
 
   @action
@@ -121,13 +113,9 @@ abstract class _CalenderViewModelBase with Store {
 
   @action
   Future<void> getSymptomps() async {
+    symptompsList.clear();
     var symptompsData = await symptompsDatasource.getAll();
     symptompsList.addAll(symptompsData.data!);
-  }
-
-  @action
-  void addSymptompsToList(Symptomps newSymptomps) {
-    symptompsList = List.from(symptompsList)..add(newSymptomps);
   }
 
   @action
