@@ -88,7 +88,7 @@ class CustomSymptompsListView extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Baby.sleep, size: 30, color: mainIconColor),
+              const Icon(Baby.symptoms, size: 30, color: mainIconColor),
               ...symptomps.sympList!.asMap().entries.map((entry) {
                 int index = entry.key;
                 String name = entry.value.name.toString();
@@ -117,7 +117,7 @@ class CustomSymptompsListView extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Baby.sleep, size: 30, color: mainIconColor),
+                    const Icon(Baby.symptoms, size: 30, color: mainIconColor),
                     ...symptomps.sympList!.asMap().entries.map((entry) {
                       int index = entry.key;
                       String name = entry.value.name.toString();

@@ -137,5 +137,6 @@ abstract class _SleepViewModelBase with Store {
 
     await sleepDatasource.update(updateSleep);
     await calenderViewModel.refreshSleepList();
+    await calenderViewModel.allListItem();
   }
 }

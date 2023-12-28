@@ -31,6 +31,9 @@ abstract class _CalenderViewModelBase with Store {
   List<Symptomps> symptompsList = [];
 
   @observable
+  ObservableList<dynamic> allList = ObservableList<dynamic>();
+
+  @observable
   bool isSelected = false;
 
   _CalenderViewModelBase() {
@@ -42,6 +45,15 @@ abstract class _CalenderViewModelBase with Store {
     await getFeeding();
     await getSleep();
     await getSymptomps();
+    allListItem();
+  }
+
+  @action
+  Future<void> allListItem() async {
+    allList.clear();
+    allList.addAll(feedingList);
+    allList.addAll(sleepList);
+    allList.addAll(symptompsList);
   }
 
   @action
@@ -62,12 +74,14 @@ abstract class _CalenderViewModelBase with Store {
     feedingList.clear();
     var feedingData = await feedingDatasource.getAll();
     feedingList.addAll(feedingData.data!);
+    allListItem();
   }
 
   @action
   Future<void> deleteFeeding(String id) async {
     await feedingDatasource.delete(id);
     feedingList.removeWhere((feeding) => feeding.id.toString() == id);
+    allListItem();
   }
 
   @action
@@ -89,12 +103,14 @@ abstract class _CalenderViewModelBase with Store {
     sleepList.clear();
     var sleepData = await sleepDatasource.getAll();
     sleepList.addAll(sleepData.data!);
+    allListItem();
   }
 
   @action
   Future<void> deleteSleep(String id) async {
     await sleepDatasource.delete(id);
     sleepList.removeWhere((sleep) => sleep.id.toString() == id);
+    allListItem();
   }
 
   @action
@@ -116,12 +132,14 @@ abstract class _CalenderViewModelBase with Store {
     symptompsList.clear();
     var symptompsData = await symptompsDatasource.getAll();
     symptompsList.addAll(symptompsData.data!);
+    allListItem();
   }
 
   @action
   Future<void> deleteSymptomps(String id) async {
     await symptompsDatasource.delete(id);
     symptompsList.removeWhere((symptomps) => symptomps.id.toString() == id);
+    allListItem();
   }
 
   @action

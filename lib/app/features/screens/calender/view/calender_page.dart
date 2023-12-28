@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/getIt/locator.dart';
 import '../../../theme/baby_icons.dart';
+import '../widgets/custom_all_listview.dart';
 import '../widgets/custom_datebutton.dart';
 import '../widgets/custom_feeding_listview.dart';
 import '../widgets/custom_sleep_listview.dart';
@@ -70,8 +71,10 @@ class _CalenderPageState extends State<CalenderPage> with TickerProviderStateMix
                 physics: const NeverScrollableScrollPhysics(),
                 controller: _tabController,
                 children: <Widget>[
-                  const Center(
-                    child: Text("It's cloudy here"),
+                  Observer(
+                    builder: (context) {
+                      return const CustomAllListview();
+                    },
                   ),
                   Observer(builder: (_) {
                     return const CustomFeedigListView();

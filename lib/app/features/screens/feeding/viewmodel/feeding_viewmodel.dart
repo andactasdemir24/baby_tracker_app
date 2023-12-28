@@ -139,5 +139,6 @@ abstract class _FeedingViewModelBase with Store {
 
     await feedingDatasource.update(updatedFeeding);
     await calenderViewModel.refreshFeedingList();
+    await calenderViewModel.allListItem();
   }
 }

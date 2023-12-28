@@ -73,6 +73,22 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     });
   }
 
+  late final _$allListAtom =
+      Atom(name: '_CalenderViewModelBase.allList', context: context);
+
+  @override
+  ObservableList<dynamic> get allList {
+    _$allListAtom.reportRead();
+    return super.allList;
+  }
+
+  @override
+  set allList(ObservableList<dynamic> value) {
+    _$allListAtom.reportWrite(value, super.allList, () {
+      super.allList = value;
+    });
+  }
+
   late final _$isSelectedAtom =
       Atom(name: '_CalenderViewModelBase.isSelected', context: context);
 
@@ -95,6 +111,14 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
   @override
   Future<void> init() {
     return _$initAsyncAction.run(() => super.init());
+  }
+
+  late final _$allListItemAsyncAction =
+      AsyncAction('_CalenderViewModelBase.allListItem', context: context);
+
+  @override
+  Future<void> allListItem() {
+    return _$allListItemAsyncAction.run(() => super.allListItem());
   }
 
   late final _$getFeedingAsyncAction =
@@ -227,6 +251,7 @@ dateTime: ${dateTime},
 feedingList: ${feedingList},
 sleepList: ${sleepList},
 symptompsList: ${symptompsList},
+allList: ${allList},
 isSelected: ${isSelected}
     ''';
   }
