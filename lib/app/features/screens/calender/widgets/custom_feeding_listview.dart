@@ -82,9 +82,9 @@ class CustomFeedigListView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text('${feeding.amount} (ml)',
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
           Text('${feeding.time?.hour.toString().padLeft(2, '0')}:${feeding.time?.minute.toString().padLeft(2, '0')}',
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
         ],
       ),
     );
@@ -102,16 +102,16 @@ class CustomFeedigListView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('${feeding.amount} (ml)',
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
                 Flexible(
                   child: Text(
                     '${feeding.time?.hour.toString().padLeft(2, '0')}:${feeding.time?.minute.toString().padLeft(2, '0')}',
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
                   ),
                 ),
               ],
             ),
-            Text('Note: ${feeding.text.toString()}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+            Text('Note: ${feeding.text.toString()}', style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
           ],
         ),
       ),

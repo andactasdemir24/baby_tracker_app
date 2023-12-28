@@ -83,10 +83,10 @@ class CustomSymptompsListView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(symptomps.sympList!.map((e) => e.name).join(', '),
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
           Text(
               '${symptomps.symTime!.hour.toString().padLeft(2, '0')}:${symptomps.symTime!.minute.toString().padLeft(2, '0')}',
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
         ],
       ),
     );
@@ -104,58 +104,20 @@ class CustomSymptompsListView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(symptomps.sympList!.map((e) => e.name).join(', '),
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
                 Flexible(
                   child: Text(
                       '${symptomps.symTime!.hour.toString().padLeft(2, '0')}:${symptomps.symTime!.minute.toString().padLeft(2, '0')}',
                       style:
-                          const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)),
+                          const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)),
                 ),
               ],
             ),
             Text('Note: ${symptomps.text.toString()}',
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
           ],
         ),
       ),
     );
   }
 }
-
-// Padding(
-//         padding: const EdgeInsets.only(top: 5),
-//         child: Column(
-//           children: [
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 Row(
-//                   mainAxisSize: MainAxisSize.min,
-//                   children: [
-//                     const Icon(Baby.symptoms, size: 30, color: mainIconColor),
-//                     ...symptomps.sympList!.asMap().entries.map((entry) {
-//                       int index = entry.key;
-//                       String name = entry.value.name.toString();
-//                       return Text(index < symptomps.sympList!.length - 1 ? '$name / ' : name,
-//                           style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor));
-//                     }).toList(),
-//                   ],
-//                 ),
-//                 Text(
-//                     '${symptomps.symTime!.hour.toString().padLeft(2, '0')}:${symptomps.symTime!.minute.toString().padLeft(2, '0')}',
-//                     style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-//               ],
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 5),
-//               child: Align(
-//                   alignment: Alignment.centerLeft,
-//                   child: Text('Note: ${symptomps.text.toString()}',
-//                       style: const TextStyle(
-//                         fontSize: 14,
-//                         fontWeight: FontWeight.w500,
-//                       ))),
-//             )
-//           ],
-//         ),
-//       );

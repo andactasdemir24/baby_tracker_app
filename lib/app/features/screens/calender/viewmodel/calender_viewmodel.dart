@@ -36,6 +36,9 @@ abstract class _CalenderViewModelBase with Store {
   @observable
   bool isSelected = false;
 
+  @observable
+  ObservableMap<String, ObservableList<dynamic>> groupedItems = ObservableMap<String, ObservableList<dynamic>>();
+
   _CalenderViewModelBase() {
     init();
   }
@@ -49,11 +52,23 @@ abstract class _CalenderViewModelBase with Store {
   }
 
   @action
-  Future<void> allListItem() async {
+  void allListItem() {
     allList.clear();
     allList.addAll(feedingList);
     allList.addAll(sleepList);
     allList.addAll(symptompsList);
+    groupItemsByType();
+  }
+
+  //Calender sayfasında her verinin üstünde modelinin isminin yazması için gereken fonksiyon
+  @action
+  void groupItemsByType() {
+    final newGroupedItems = <String, ObservableList<dynamic>>{};
+    for (var all in allList) {
+      var type = all.runtimeType.toString();
+      newGroupedItems.putIfAbsent(type, () => ObservableList<dynamic>()).add(all);
+    }
+    groupedItems = ObservableMap<String, ObservableList<dynamic>>.of(newGroupedItems);
   }
 
   @action
@@ -75,6 +90,7 @@ abstract class _CalenderViewModelBase with Store {
     var feedingData = await feedingDatasource.getAll();
     feedingList.addAll(feedingData.data!);
     allListItem();
+    groupItemsByType();
   }
 
   @action
@@ -82,6 +98,7 @@ abstract class _CalenderViewModelBase with Store {
     await feedingDatasource.delete(id);
     feedingList.removeWhere((feeding) => feeding.id.toString() == id);
     allListItem();
+    groupItemsByType();
   }
 
   @action
@@ -104,6 +121,7 @@ abstract class _CalenderViewModelBase with Store {
     var sleepData = await sleepDatasource.getAll();
     sleepList.addAll(sleepData.data!);
     allListItem();
+    groupItemsByType();
   }
 
   @action
@@ -111,6 +129,7 @@ abstract class _CalenderViewModelBase with Store {
     await sleepDatasource.delete(id);
     sleepList.removeWhere((sleep) => sleep.id.toString() == id);
     allListItem();
+    groupItemsByType();
   }
 
   @action
@@ -133,6 +152,7 @@ abstract class _CalenderViewModelBase with Store {
     var symptompsData = await symptompsDatasource.getAll();
     symptompsList.addAll(symptompsData.data!);
     allListItem();
+    groupItemsByType();
   }
 
   @action
@@ -140,6 +160,7 @@ abstract class _CalenderViewModelBase with Store {
     await symptompsDatasource.delete(id);
     symptompsList.removeWhere((symptomps) => symptomps.id.toString() == id);
     allListItem();
+    groupItemsByType();
   }
 
   @action

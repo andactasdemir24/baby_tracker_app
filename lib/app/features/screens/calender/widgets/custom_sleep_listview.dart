@@ -116,11 +116,11 @@ class CustomSleepListView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Feel sleep:',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
                   Flexible(
                     child: Text(
                         '${sleep.fellSleep!.hour.toString().padLeft(2, '0')}:${sleep.fellSleep!.minute.toString().padLeft(2, '0')}',
-                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                         overflow: TextOverflow.ellipsis),
                   ),
                 ],
@@ -129,20 +129,16 @@ class CustomSleepListView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Woke up:',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
                   Flexible(
                     child: Text(
                         '${sleep.wokeUp?.hour.toString().padLeft(2, '0')}:${sleep.wokeUp?.minute.toString().padLeft(2, '0')}',
-                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                         overflow: TextOverflow.ellipsis),
                   ),
                 ],
               ),
-              Text('Note: ${sleep.text.toString()}',
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  )),
+              Text('Note: ${sleep.text.toString()}', style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
             ],
           )),
     );

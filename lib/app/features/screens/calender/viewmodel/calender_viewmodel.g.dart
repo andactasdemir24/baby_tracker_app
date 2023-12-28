@@ -105,20 +105,28 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
     });
   }
 
+  late final _$groupedItemsAtom =
+      Atom(name: '_CalenderViewModelBase.groupedItems', context: context);
+
+  @override
+  ObservableMap<String, ObservableList<dynamic>> get groupedItems {
+    _$groupedItemsAtom.reportRead();
+    return super.groupedItems;
+  }
+
+  @override
+  set groupedItems(ObservableMap<String, ObservableList<dynamic>> value) {
+    _$groupedItemsAtom.reportWrite(value, super.groupedItems, () {
+      super.groupedItems = value;
+    });
+  }
+
   late final _$initAsyncAction =
       AsyncAction('_CalenderViewModelBase.init', context: context);
 
   @override
   Future<void> init() {
     return _$initAsyncAction.run(() => super.init());
-  }
-
-  late final _$allListItemAsyncAction =
-      AsyncAction('_CalenderViewModelBase.allListItem', context: context);
-
-  @override
-  Future<void> allListItem() {
-    return _$allListItemAsyncAction.run(() => super.allListItem());
   }
 
   late final _$getFeedingAsyncAction =
@@ -201,6 +209,28 @@ mixin _$CalenderViewModel on _CalenderViewModelBase, Store {
       ActionController(name: '_CalenderViewModelBase', context: context);
 
   @override
+  void allListItem() {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.allListItem');
+    try {
+      return super.allListItem();
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void groupItemsByType() {
+    final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
+        name: '_CalenderViewModelBase.groupItemsByType');
+    try {
+      return super.groupItemsByType();
+    } finally {
+      _$_CalenderViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   Future<DateTime?> pickDate(BuildContext context) {
     final _$actionInfo = _$_CalenderViewModelBaseActionController.startAction(
         name: '_CalenderViewModelBase.pickDate');
@@ -252,7 +282,8 @@ feedingList: ${feedingList},
 sleepList: ${sleepList},
 symptompsList: ${symptompsList},
 allList: ${allList},
-isSelected: ${isSelected}
+isSelected: ${isSelected},
+groupedItems: ${groupedItems}
     ''';
   }
 }

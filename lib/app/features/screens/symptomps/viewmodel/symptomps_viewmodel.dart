@@ -157,6 +157,6 @@ abstract class _SymptompsViewmodelBase with Store {
 
     await symptompsDatasource.update(symptompsModel);
     await calenderViewModel.refreshSymptompsList();
-    await calenderViewModel.allListItem();
+     calenderViewModel.allListItem();
   }
 }
