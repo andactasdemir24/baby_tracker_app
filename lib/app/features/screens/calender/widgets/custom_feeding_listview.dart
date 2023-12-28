@@ -28,7 +28,7 @@ class CustomFeedigListView extends StatelessWidget {
                     return Dismissible(
                       key: Key(feeding.id!),
                       background: Container(
-                        color: sleepIconColor,
+                        color: cred,
                         alignment: Alignment.centerRight,
                         padding: const EdgeInsets.only(right: 20.0),
                         child: const Icon(Icons.delete, color: cwhite),

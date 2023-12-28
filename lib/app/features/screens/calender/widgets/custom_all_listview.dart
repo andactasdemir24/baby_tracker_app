@@ -36,7 +36,7 @@ class CustomAllListview extends StatelessWidget {
                             return Dismissible(
                               key: Key(all.id!),
                               background: Container(
-                                color: sleepIconColor,
+                                color: cred,
                                 alignment: Alignment.centerRight,
                                 padding: const EdgeInsets.only(right: 20.0),
                                 child: const Icon(Icons.delete, color: cwhite),
@@ -55,53 +55,34 @@ class CustomAllListview extends StatelessWidget {
                                         ));
                                   },
                                   child: Container(
-                                    width: displayWidth(context) * 0.8878,
-                                    height: displayHeight(context) * 0.11,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: annualColor,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: [
-                                                      const Icon(Baby.feed, size: 30, color: mainIconColor),
-                                                      Text('${all.amount} (ml)',
-                                                          style: const TextStyle(
-                                                              fontSize: 14,
-                                                              fontWeight: FontWeight.bold,
-                                                              color: mainIconColor)),
-                                                    ],
-                                                  ),
-                                                  Text(
-                                                      '${all.time?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${all.time?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
-                                                      style:
-                                                          const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                                child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text('Note: ${all.text.toString()}',
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w500,
-                                                        ))),
-                                              )
-                                            ],
-                                          ),
-                                        )),
-                                  )),
+                                      width: displayWidth(context) * 0.8878,
+                                      height: displayHeight(context) * 0.14,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: annualColor,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: ListTile(
+                                        leading: const Icon(Baby.feed, size: 50, color: mainIconColor),
+                                        title: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text('${all.amount} (ml)', style: customTextStyle()),
+                                                Flexible(
+                                                    child: Text(
+                                                        '${all.time?.hour.toString().padLeft(2, '0')}:${all.time?.minute.toString().padLeft(2, '0')}',
+                                                        style: customTextStyle2()))
+                                              ],
+                                            ),
+                                            Text('Note: ${all.text.toString()}',
+                                                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                                          ],
+                                        ),
+                                      ))),
                             );
                           },
                         )),
@@ -118,11 +99,10 @@ class CustomAllListview extends StatelessWidget {
                             return Dismissible(
                               key: Key(all.id!),
                               background: Container(
-                                color: sleepIconColor,
-                                alignment: Alignment.centerRight,
-                                padding: const EdgeInsets.only(right: 20.0),
-                                child: const Icon(Icons.delete, color: cwhite),
-                              ),
+                                  color: cred,
+                                  alignment: Alignment.centerRight,
+                                  padding: const EdgeInsets.only(right: 20.0),
+                                  child: const Icon(Icons.delete, color: cwhite)),
                               direction: DismissDirection.endToStart,
                               onDismissed: (direction) {
                                 allviewmodel.deleteSleep(all.id!);
@@ -133,76 +113,50 @@ class CustomAllListview extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => SleepPageEdit(
-                                                id: all.id!,
-                                                feelSleep: all.fellSleep!,
-                                                wokeUp: all.wokeUp!,
-                                                note: all.text!)));
+                                                  id: all.id!,
+                                                  feelSleep: all.fellSleep!,
+                                                  wokeUp: all.wokeUp!,
+                                                  note: all.text!,
+                                                )));
                                   },
                                   child: Container(
-                                    width: displayWidth(context) * 0.8878,
-                                    height: displayHeight(context) * 0.11,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: annualColor,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      width: displayWidth(context) * 0.8878,
+                                      height: displayHeight(context) * 0.14,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: annualColor,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: ListTile(
+                                          leading: const Icon(Baby.sleep, size: 50, color: mainIconColor),
+                                          title: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              const Row(
-                                                mainAxisSize: MainAxisSize.min,
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Icon(Baby.sleep, size: 30, color: mainIconColor),
-                                                  Text('Feel sleep:',
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.bold,
-                                                          color: mainIconColor)),
+                                                  Text('Feel sleep:', style: customTextStyle()),
+                                                  Flexible(
+                                                      child: Text(
+                                                          '${all.fellSleep!.hour.toString().padLeft(2, '0')}:${all.fellSleep!.minute.toString().padLeft(2, '0')}',
+                                                          style: customTextStyle2())),
                                                 ],
                                               ),
-                                              Text('${all.fellSleep!.hour}:${all.fellSleep!.minute}',
-                                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              const Row(
-                                                mainAxisSize: MainAxisSize.min,
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(left: 30, bottom: 10),
-                                                    child: Text('Woke up:',
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight: FontWeight.bold,
-                                                            color: mainIconColor)),
+                                                  Text('Woke up:', style: customTextStyle()),
+                                                  Flexible(
+                                                    child: Text(
+                                                        '${all.wokeUp?.hour.toString().padLeft(2, '0')}:${all.wokeUp?.minute.toString().padLeft(2, '0')}',
+                                                        style: customTextStyle2()),
                                                   ),
                                                 ],
                                               ),
-                                              Text(
-                                                  '${all.wokeUp?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${all.wokeUp?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
-                                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                              Text('Note: ${all.text.toString()}', style: customTextStyle3()),
                                             ],
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                                            child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text('Note: ${all.text.toString()}',
-                                                    style: const TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w500,
-                                                    ))),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )),
+                                          )))),
                             );
                           },
                         )),
@@ -219,11 +173,10 @@ class CustomAllListview extends StatelessWidget {
                             return Dismissible(
                               key: Key(all.id!),
                               background: Container(
-                                color: sleepIconColor,
-                                alignment: Alignment.centerRight,
-                                padding: const EdgeInsets.only(right: 20.0),
-                                child: const Icon(Icons.delete, color: cwhite),
-                              ),
+                                  color: cred,
+                                  alignment: Alignment.centerRight,
+                                  padding: const EdgeInsets.only(right: 20.0),
+                                  child: const Icon(Icons.delete, color: cwhite)),
                               direction: DismissDirection.endToStart,
                               onDismissed: (direction) {
                                 allviewmodel.deleteSymptomps(all.id!);
@@ -233,67 +186,44 @@ class CustomAllListview extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => SymptompsPageEdit(
-                                            id: all.id!,
-                                            symTime: all.symTime!,
-                                            sympList: all.sympList!,
-                                            note: all.text!,
-                                          ),
-                                        ));
+                                            builder: (context) => SymptompsPageEdit(
+                                                id: all.id!,
+                                                symTime: all.symTime!,
+                                                sympList: all.sympList!,
+                                                note: all.text!)));
                                   },
                                   child: Container(
-                                    width: displayWidth(context) * 0.8878,
-                                    height: displayHeight(context) * 0.11,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: annualColor,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Column(
+                                      width: displayWidth(context) * 0.8878,
+                                      height: displayHeight(context) * 0.14,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: annualColor,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: SingleChildScrollView(
+                                        child: ListTile(
+                                          leading: const Icon(Baby.symptoms, size: 50, color: mainIconColor),
+                                          title: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: [
-                                                      const Icon(Baby.symptoms, size: 30, color: mainIconColor),
-                                                      ...all.sympList!.asMap().entries.map((entry) {
-                                                        int index = entry.key;
-                                                        String name = entry.value.name.toString();
-                                                        return Text(
-                                                            index < all.sympList!.length - 1 ? '$name / ' : name,
-                                                            style: const TextStyle(
-                                                                fontSize: 15,
-                                                                fontWeight: FontWeight.bold,
-                                                                color: mainIconColor));
-                                                      }).toList(),
-                                                    ],
+                                                  Text(all.sympList!.map((e) => e.name).join(', '),
+                                                      style: customTextStyle()),
+                                                  Flexible(
+                                                    child: Text(
+                                                        '${all.symTime!.hour.toString().padLeft(2, '0')}:${all.symTime!.minute.toString().padLeft(2, '0')}',
+                                                        style: customTextStyle2()),
                                                   ),
-                                                  Text(
-                                                      '${all.symTime!.hour.toString().padLeft(2, '0')}:${all.symTime!.minute.toString().padLeft(2, '0')}',
-                                                      style:
-                                                          const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                                                 ],
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.symmetric(horizontal: 5),
-                                                child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text('Note: ${all.text.toString()}',
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight.w500,
-                                                        ))),
-                                              )
+                                              Text('Note: ${all.text.toString()}', style: customTextStyle3()),
                                             ],
                                           ),
-                                        )),
-                                  )),
+                                        ),
+                                      ))),
                             );
                           },
                         )),
@@ -301,12 +231,23 @@ class CustomAllListview extends StatelessWidget {
                     ),
                   );
               }
-
-              return const Text('a');
+              return const Text('You dont have any data');
             },
           );
         },
       ),
     );
+  }
+
+  TextStyle customTextStyle3() {
+    return const TextStyle(fontSize: 15, fontWeight: FontWeight.w500);
+  }
+
+  TextStyle customTextStyle2() {
+    return const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis);
+  }
+
+  TextStyle customTextStyle() {
+    return const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor);
   }
 }

@@ -5,6 +5,8 @@ const Color cwhite = Colors.white;
 const Color cblack = Colors.black;
 const Color cgrey = Colors.grey;
 const Color ctransparent = Colors.transparent;
+const Color cred = Colors.red;
+
 
 //Onboarding
 const Color buttonColor = Color(0xff4625c3);
@@ -23,8 +25,6 @@ const Color settingsIndex = Color(0xffc2c2c2);
 
 //feeding icon color
 const Color feedindIconColor = Color(0xff9B64FF);
-//sleep icon color
-const Color sleepIconColor = Colors.red;
 //symptomps icon color
 const Color symptompsIconColor = Color(0xffFFC664);
 // calender icon color
