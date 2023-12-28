@@ -22,6 +22,7 @@ class CustomNoteTextfield extends StatelessWidget {
           onChanged: onChanged,
           style: const TextStyle(fontWeight: FontWeight.bold),
           maxLines: 8,
+          maxLength: 60,
           controller: controller,
           decoration: InputDecoration(
               filled: true,
