@@ -53,7 +53,16 @@ class _SymptompsPageState extends State<SymptompsPage> {
                       text: symptompsViewmodel.time3 != null ? symptompsViewmodel.time3!.format(context) : sympAppbar,
                       color: symptompsViewmodel.time3 != null ? cblack : settingsIndex),
                 ),
-                const CustomSymptompsList(),
+                CustomSymptompsList(
+                    text: Text(
+                  symptompsViewmodel.selectedIndices.isEmpty
+                      ? symptomos
+                      : symptompsViewmodel.selectedIndices.map((index) => index.name).join(', '),
+                  style: TextStyle(
+                      fontSize: 15.5,
+                      fontWeight: FontWeight.bold,
+                      color: symptompsViewmodel.selectedIndices.isEmpty ? settingsIndex : Colors.black),
+                )),
                 CustomNoteTextfield(
                   controller: symptompsViewmodel.noteController,
                   onChanged: (p0) => symptompsViewmodel.changeVisible(),

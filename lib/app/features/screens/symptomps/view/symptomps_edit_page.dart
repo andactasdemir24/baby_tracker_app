@@ -82,7 +82,13 @@ class _SymptompsPageEditState extends State<SymptompsPageEdit> {
                           : '${widget.symTime.hour.toString()}:${widget.symTime.minute.toString().padLeft(2, '0')}',
                       color: cblack,
                     )),
-                const CustomSymptompsList(),
+                CustomSymptompsList(
+                    text: Text(
+                  symptompsViewmodel.selectedIndices.isEmpty
+                      ? widget.sympList.map((e) => e.name).join(', ')
+                      : symptompsViewmodel.selectedIndices.map((index) => index.name).join(', '),
+                  style: const TextStyle(fontSize: 15.5, fontWeight: FontWeight.bold, color: cblack),
+                )),
                 CustomNoteTextfield(
                   controller: noteController,
                   onChanged: (p0) => symptompsViewmodel.changeVisible(),
@@ -96,7 +102,7 @@ class _SymptompsPageEditState extends State<SymptompsPageEdit> {
                         var value = Symptomps(
                             id: widget.id,
                             symTime: widget.symTime,
-                            sympList: widget.sympList,
+                            sympList: symptompsViewmodel.selectedIndices,
                             text: noteController.text);
                         symptompsViewmodel.updateSymptomps(value);
                         symptompsViewmodel.toggleBlur4(context);
