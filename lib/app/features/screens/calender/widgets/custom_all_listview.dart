@@ -36,7 +36,7 @@ class CustomAllListview extends StatelessWidget {
                             return Dismissible(
                               key: Key(all.id!),
                               background: Container(
-                                color: Colors.red,
+                                color: sleepIconColor,
                                 alignment: Alignment.centerRight,
                                 padding: const EdgeInsets.only(right: 20.0),
                                 child: const Icon(Icons.delete, color: cwhite),
@@ -118,7 +118,7 @@ class CustomAllListview extends StatelessWidget {
                             return Dismissible(
                               key: Key(all.id!),
                               background: Container(
-                                color: Colors.red,
+                                color: sleepIconColor,
                                 alignment: Alignment.centerRight,
                                 padding: const EdgeInsets.only(right: 20.0),
                                 child: const Icon(Icons.delete, color: cwhite),
@@ -219,7 +219,7 @@ class CustomAllListview extends StatelessWidget {
                             return Dismissible(
                               key: Key(all.id!),
                               background: Container(
-                                color: Colors.red,
+                                color: sleepIconColor,
                                 alignment: Alignment.centerRight,
                                 padding: const EdgeInsets.only(right: 20.0),
                                 child: const Icon(Icons.delete, color: cwhite),

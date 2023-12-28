@@ -27,11 +27,11 @@ class CustomTimePicker extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: displayWidth(context) * 0.04),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Text(text, //feedingViewmodel.time != null ? feedingViewmodel.time!.format(context) : time,
+            child: Text(text,
                 style: TextStyle(
                   fontSize: 15.5,
                   fontWeight: FontWeight.bold,
-                  color: color, //feedingViewmodel.time != null ? const Color(0xff010101) : const Color(0xffC2C2C2)),
+                  color: color,
                 )),
           ),
         ),

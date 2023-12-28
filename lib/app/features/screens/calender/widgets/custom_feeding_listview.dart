@@ -28,7 +28,7 @@ class CustomFeedigListView extends StatelessWidget {
                     return Dismissible(
                       key: Key(feeding.id!),
                       background: Container(
-                        color: Colors.red,
+                        color: sleepIconColor,
                         alignment: Alignment.centerRight,
                         padding: const EdgeInsets.only(right: 20.0),
                         child: const Icon(Icons.delete, color: cwhite),
@@ -53,19 +53,16 @@ class CustomFeedigListView extends StatelessWidget {
                             calenderViewmodel.toggleSelected(index);
                           },
                           child: AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.easeInCirc,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.ease,
                             width: displayWidth(context) * 0.8878,
-                            height: feeding.isSelected ? displayHeight(context) * 0.12 : displayHeight(context) * 0.075,
+                            height: feeding.isSelected ? displayHeight(context) * 0.15 : displayHeight(context) * 0.1,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               color: annualColor,
                             ),
                             alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: !feeding.isSelected ? notpress(feeding) : whenipress(feeding),
-                            ),
+                            child: !feeding.isSelected ? notpress(feeding) : whenipress(feeding),
                           )),
                     );
                   },
@@ -78,57 +75,45 @@ class CustomFeedigListView extends StatelessWidget {
     });
   }
 
-  Row notpress(Feeding feeding) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Baby.feed, size: 30, color: mainIconColor),
-            Text('${feeding.amount} (ml)',
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
-          ],
-        ),
-        Text(
-            '${feeding.time?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${feeding.time?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-      ],
+  ListTile notpress(Feeding feeding) {
+    return ListTile(
+      leading: const Icon(Baby.feed, size: 50, color: mainIconColor),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('${feeding.amount} (ml)',
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+          Text('${feeding.time?.hour.toString().padLeft(2, '0')}:${feeding.time?.minute.toString().padLeft(2, '0')}',
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+        ],
+      ),
     );
   }
 
-  Padding whenipress(Feeding feeding) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 5),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Baby.feed, size: 30, color: mainIconColor),
-                  Text('${feeding.amount} (ml)',
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
-                ],
-              ),
-              Text(
-                  '${feeding.time?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${feeding.time?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Note: ${feeding.text.toString()}',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ))),
-          )
-        ],
+  SingleChildScrollView whenipress(Feeding feeding) {
+    return SingleChildScrollView(
+      child: ListTile(
+        leading: const Icon(Baby.feed, size: 50, color: mainIconColor),
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('${feeding.amount} (ml)',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                Flexible(
+                  child: Text(
+                    '${feeding.time?.hour.toString().padLeft(2, '0')}:${feeding.time?.minute.toString().padLeft(2, '0')}',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
+                  ),
+                ),
+              ],
+            ),
+            Text('Note: ${feeding.text.toString()}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+          ],
+        ),
       ),
     );
   }

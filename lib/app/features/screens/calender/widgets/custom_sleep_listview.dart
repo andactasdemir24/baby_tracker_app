@@ -28,7 +28,7 @@ class CustomSleepListView extends StatelessWidget {
                     return Dismissible(
                       key: Key(sleep.id!),
                       background: Container(
-                        color: Colors.red,
+                        color: sleepIconColor,
                         alignment: Alignment.centerRight,
                         padding: const EdgeInsets.only(right: 20.0),
                         child: const Icon(Icons.delete, color: cwhite),
@@ -52,19 +52,16 @@ class CustomSleepListView extends StatelessWidget {
                             calenderViewmodel.toggleSelected1(index);
                           },
                           child: AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.easeInCirc,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.ease,
                             width: displayWidth(context) * 0.8878,
-                            height: sleep.isSelected ? displayHeight(context) * 0.13 : displayHeight(context) * 0.08,
+                            height: sleep.isSelected ? displayHeight(context) * 0.15 : displayHeight(context) * 0.1,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               color: annualColor,
                             ),
                             alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: !sleep.isSelected ? notpress(sleep) : whenipress(sleep),
-                            ),
+                            child: !sleep.isSelected ? notpress(sleep) : whenipress(sleep),
                           )),
                     );
                   },
@@ -77,89 +74,77 @@ class CustomSleepListView extends StatelessWidget {
     });
   }
 
-  Column notpress(Sleep sleep) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  ListTile notpress(Sleep sleep) {
+    return ListTile(
+        leading: const Icon(Baby.sleep, size: 50, color: mainIconColor),
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Row(
-              mainAxisSize: MainAxisSize.min,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Baby.sleep, size: 30, color: mainIconColor),
-                Text('Feel sleep:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
+                const Text('Feel sleep:',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                Text(
+                    '${sleep.fellSleep!.hour.toString().padLeft(2, '0')}:${sleep.fellSleep!.minute.toString().padLeft(2, '0')}',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
               ],
             ),
-            Text('${sleep.fellSleep!.hour}:${sleep.fellSleep!.minute}',
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Woke up:',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                Text(
+                    '${sleep.wokeUp?.hour.toString().padLeft(2, '0')}:${sleep.wokeUp?.minute.toString().padLeft(2, '0')}',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              ],
+            )
           ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 30, bottom: 10),
-              child:
-                  Text('Woke up:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
-            ),
-            Text(
-                '${sleep.wokeUp?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${sleep.wokeUp?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-          ],
-        ),
-      ],
-    );
+        ));
   }
 
   SingleChildScrollView whenipress(Sleep sleep) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: ListTile(
+          leading: const Icon(Baby.sleep, size: 50, color: mainIconColor),
+          title: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
-                mainAxisSize: MainAxisSize.min,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Baby.sleep, size: 30, color: mainIconColor),
-                  Text('Feel sleep:',
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
-                ],
-              ),
-              Text('${sleep.fellSleep!.hour}:${sleep.fellSleep!.minute}',
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 30, bottom: 10),
-                    child: Text('Woke up:',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor)),
+                  const Text('Feel sleep:',
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                  Flexible(
+                    child: Text(
+                        '${sleep.fellSleep!.hour.toString().padLeft(2, '0')}:${sleep.fellSleep!.minute.toString().padLeft(2, '0')}',
+                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis),
                   ),
                 ],
               ),
-              Text(
-                  '${sleep.wokeUp?.hour.toString().padLeft(2, '0') ?? 'N/A'}:${sleep.wokeUp?.minute.toString().padLeft(2, '0') ?? 'N/A'}',
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Woke up:',
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                  Flexible(
+                    child: Text(
+                        '${sleep.wokeUp?.hour.toString().padLeft(2, '0')}:${sleep.wokeUp?.minute.toString().padLeft(2, '0')}',
+                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                ],
+              ),
+              Text('Note: ${sleep.text.toString()}',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  )),
             ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Note: ${sleep.text.toString()}',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ))),
-          )
-        ],
-      ),
+          )),
     );
   }
 }

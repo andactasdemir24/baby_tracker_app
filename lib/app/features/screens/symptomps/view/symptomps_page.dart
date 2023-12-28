@@ -61,7 +61,7 @@ class _SymptompsPageState extends State<SymptompsPage> {
                   style: TextStyle(
                       fontSize: 15.5,
                       fontWeight: FontWeight.bold,
-                      color: symptompsViewmodel.selectedIndices.isEmpty ? settingsIndex : Colors.black),
+                      color: symptompsViewmodel.selectedIndices.isEmpty ? settingsIndex : cblack),
                 )),
                 CustomNoteTextfield(
                   controller: symptompsViewmodel.noteController,
@@ -88,7 +88,7 @@ class _SymptompsPageState extends State<SymptompsPage> {
               Positioned.fill(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                  child: Container(color: Colors.black.withOpacity(0), child: Center(child: Lottie.asset(lottie))),
+                  child: Container(color: cblack.withOpacity(0), child: Center(child: Lottie.asset(lottie))),
                 ),
               ),
           ],

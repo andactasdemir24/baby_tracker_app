@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 //global
 const Color cwhite = Colors.white;
 const Color cblack = Colors.black;
+const Color cgrey = Colors.grey;
+const Color ctransparent = Colors.transparent;
 
 //Onboarding
 const Color buttonColor = Color(0xff4625c3);
 const Color buttonTextColor = Color(0xfffafafa);
+
+const Color sympListShadow = Color(0xff8a3af8);
 
 //inApp
 const Color getPremiumTextColor = Color(0xFF4625C3);

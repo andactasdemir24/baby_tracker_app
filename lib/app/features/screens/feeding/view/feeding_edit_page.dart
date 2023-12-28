@@ -111,7 +111,7 @@ class _FeedingEditState extends State<FeedingEdit> {
               Positioned.fill(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                  child: Container(color: Colors.black.withOpacity(0), child: Center(child: Lottie.asset(lottie))),
+                  child: Container(color: cblack.withOpacity(0), child: Center(child: Lottie.asset(lottie))),
                 ),
               ),
           ],

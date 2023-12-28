@@ -28,7 +28,7 @@ class CustomSymptompsListView extends StatelessWidget {
                     return Dismissible(
                       key: Key(symptomps.id!),
                       background: Container(
-                        color: Colors.red,
+                        color: sleepIconColor,
                         alignment: Alignment.centerRight,
                         padding: const EdgeInsets.only(right: 20.0),
                         child: const Icon(Icons.delete, color: cwhite),
@@ -54,20 +54,16 @@ class CustomSymptompsListView extends StatelessWidget {
                             calenderViewmodel.toogleSelected2(index);
                           },
                           child: AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.easeInCirc,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.ease,
                             width: displayWidth(context) * 0.8878,
-                            height:
-                                symptomps.isSelected ? displayHeight(context) * 0.12 : displayHeight(context) * 0.075,
+                            height: symptomps.isSelected ? displayHeight(context) * 0.15 : displayHeight(context) * 0.1,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               color: annualColor,
                             ),
                             alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: !symptomps.isSelected ? notpress(symptomps) : whenipress(symptomps),
-                            ),
+                            child: !symptomps.isSelected ? notpress(symptomps) : whenipress(symptomps),
                           )),
                     );
                   },
@@ -80,70 +76,86 @@ class CustomSymptompsListView extends StatelessWidget {
     });
   }
 
-  Observer notpress(Symptomps symptomps) {
-    return Observer(builder: (context) {
-      return Row(
+  ListTile notpress(Symptomps symptomps) {
+    return ListTile(
+      leading: const Icon(Baby.symptoms, size: 50, color: mainIconColor),
+      title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Baby.symptoms, size: 30, color: mainIconColor),
-              ...symptomps.sympList!.asMap().entries.map((entry) {
-                int index = entry.key;
-                String name = entry.value.name.toString();
-                return Text(index < symptomps.sympList!.length - 1 ? '$name / ' : name,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: mainIconColor));
-              }).toList(),
-            ],
-          ),
+          Text(symptomps.sympList!.map((e) => e.name).join(', '),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
           Text(
               '${symptomps.symTime!.hour.toString().padLeft(2, '0')}:${symptomps.symTime!.minute.toString().padLeft(2, '0')}',
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         ],
-      );
-    });
+      ),
+    );
   }
 
-  Observer whenipress(Symptomps symptomps) {
-    return Observer(builder: (context) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 5),
-        child: Column(
+  SingleChildScrollView whenipress(Symptomps symptomps) {
+    return SingleChildScrollView(
+      child: ListTile(
+        leading: const Icon(Baby.symptoms, size: 50, color: mainIconColor),
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Baby.symptoms, size: 30, color: mainIconColor),
-                    ...symptomps.sympList!.asMap().entries.map((entry) {
-                      int index = entry.key;
-                      String name = entry.value.name.toString();
-                      return Text(index < symptomps.sympList!.length - 1 ? '$name / ' : name,
-                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor));
-                    }).toList(),
-                  ],
+                Text(symptomps.sympList!.map((e) => e.name).join(', '),
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor)),
+                Flexible(
+                  child: Text(
+                      '${symptomps.symTime!.hour.toString().padLeft(2, '0')}:${symptomps.symTime!.minute.toString().padLeft(2, '0')}',
+                      style:
+                          const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)),
                 ),
-                Text(
-                    '${symptomps.symTime!.hour.toString().padLeft(2, '0')}:${symptomps.symTime!.minute.toString().padLeft(2, '0')}',
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Note: ${symptomps.text.toString()}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ))),
-            )
+            Text('Note: ${symptomps.text.toString()}',
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
           ],
         ),
-      );
-    });
+      ),
+    );
   }
 }
+
+// Padding(
+//         padding: const EdgeInsets.only(top: 5),
+//         child: Column(
+//           children: [
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 Row(
+//                   mainAxisSize: MainAxisSize.min,
+//                   children: [
+//                     const Icon(Baby.symptoms, size: 30, color: mainIconColor),
+//                     ...symptomps.sympList!.asMap().entries.map((entry) {
+//                       int index = entry.key;
+//                       String name = entry.value.name.toString();
+//                       return Text(index < symptomps.sympList!.length - 1 ? '$name / ' : name,
+//                           style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: mainIconColor));
+//                     }).toList(),
+//                   ],
+//                 ),
+//                 Text(
+//                     '${symptomps.symTime!.hour.toString().padLeft(2, '0')}:${symptomps.symTime!.minute.toString().padLeft(2, '0')}',
+//                     style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+//               ],
+//             ),
+//             Padding(
+//               padding: const EdgeInsets.symmetric(horizontal: 5),
+//               child: Align(
+//                   alignment: Alignment.centerLeft,
+//                   child: Text('Note: ${symptomps.text.toString()}',
+//                       style: const TextStyle(
+//                         fontSize: 14,
+//                         fontWeight: FontWeight.w500,
+//                       ))),
+//             )
+//           ],
+//         ),
+//       );

@@ -5,6 +5,8 @@ import 'package:baby_tracker_app/app/features/screens/settings/view/settings_pag
 import 'package:baby_tracker_app/app/features/theme/baby_icons.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/color_constants.dart';
+
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppbar({super.key});
 
@@ -12,7 +14,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: const Text(appbarText, style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.w500)),
+      title: const Text(appbarText, style: TextStyle(color: cblack, fontSize: 22, fontWeight: FontWeight.w500)),
       leading: GestureDetector(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));

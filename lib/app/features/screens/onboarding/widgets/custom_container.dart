@@ -1,3 +1,4 @@
+import 'package:baby_tracker_app/app/core/constants/color_constants.dart';
 import 'package:baby_tracker_app/app/features/screens/inapp/view/inapp_page.dart';
 import 'package:baby_tracker_app/app/features/screens/onboarding/widgets/custom_current_page_container.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class CustomContainer extends StatelessWidget {
           height: displayHeight(context) * 0.5, // Yüzde 50
           child: Container(
             decoration: const BoxDecoration(
-                color: Colors.white,
+                color: cwhite,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))),
             child: Column(
               children: [
@@ -49,7 +50,7 @@ class CustomContainer extends StatelessWidget {
                   return CustomButton(
                     text: const Text(
                       buttonText,
-                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
+                      style: TextStyle(color: cwhite, fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                     onPressed: () {
                       if (onbViewmodel.currentIndex == onbViewmodel.onbList.length - 1) {
