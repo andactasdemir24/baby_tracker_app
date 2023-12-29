@@ -19,7 +19,7 @@ Future<void> main() async {
   setupLocator();
   runApp(const MyApp());
 }
-
+//
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
